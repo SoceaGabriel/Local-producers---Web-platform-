@@ -4,38 +4,147 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+    <header>
+        <nav class="loc-nav-bar">
+            <div class="loc-logo">
+                <a href="#"><img src="~/Images/LogoProdLoc.png" width="200" /></a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+            <div class="loc-nav-left">
+                <ul class="loc-nav-ul">
+                    <li><a href="#"><img src="~/Images/LogoProdLoc.png" width="200" /></a></li>
+                    <li><a href="#">Categorii</a></li>
+                    <li><a href="#">Informatii generale</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </div>
+            <div class="loc-nav-right">
+                <a href="#" class="loc-button-orange">
+                    <b class="loc-button-icon">&#9993;</b>
+                </a>
+                <a href="#" class="loc-button-orange">
+                    <b class="loc-button-icon" style="font-size: 22px; padding: 0px; text-align:center;">
+                        &#9786; <i class="fas fa-caret-down"></i>
+                    </b>
+                </a>
+
+                <a href="#" class="loc-button-orange">
+                    &#10010;<span class="loc-text-botton "> Adauga anunt</span>
+                </a>
+                <a onclick="showMenu();" class="loc-hidden-bars-menu">
+                    <i class="fas fa-bars" style="font-size: 24px;"></i>
+                </a>
+            </div>
+        </nav>
+        <div class="loc-show-hidden-menu" id="loc-show-hidden-menu">
+            <ul class="loc-hidden-nav-ul">
+                <li><a href="#">Acasa</a></li>
+                <li><a href="#">Categorii</a></li>
+                <li><a href="#">Informatii generale</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="loc-search-zone">
+        <div class="loc-row">
+            <div class="loc-item-search">
+                <select name="area" class="" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
+                    <option selected>Categorie</option>
+                    <option value="New Village">New Village</option>
+                    <option value="Old Town">Old Town</option>
+                    <option value="Modern City">Modern City</option>
+                </select>
+            </div>
+            <div class="loc-item-search">
+                <select name="price" class="" aria-label="Default select example" id="chooseCategory" onchange="this.form.click()">
+                    <option selected>Subcategorie</option>
+                    <option value="$100 - $250">$100 - $250</option>
+                    <option value="$250 - $500">$250 - $500</option>
+                    <option value="$500 - $1000">$500 - $1,000</option>
+                    <option value="$1000+">$1,000 or more</option>
+                </select>
+            </div>
+            <div class="loc-item-search">
+                <input type="address" name="address" class="" placeholder="Căutați produsul dorit" autocomplete="on" required>
+            </div>
+            <div class="loc-item-search">
+                <button class=""><i class="fa fa-search"></i> Căutați</button>
+            </div>
+        </div>
+        <br />
+        <div class="loc-categories-zone">
+            <ul class="categories">
+                <li><a href="#"><span class="icon"><img src="../Images/icons/cocktail.png" alt="Băuturi"></span> Băuturi</a></li>
+                <li><a href="#"><span class="icon"><img src="../Images/icons/steak.png" alt="Băuturi"></span> Carne și pește</a></li>
+                <li><a href="#"><span class="icon"><img src="../Images/icons/fruits.png" alt="Băuturi"></span> Fructe și legume</a></li>
+                <li><a href="#"><span class="icon"><img src="../Images/icons/boiled-egg.png" alt="Băuturi"></span> Ouă și lapte</a></li>
+                <li><a href="#"><span class="icon"><img src="../Images/icons/honey.png" alt="Băuturi"></span> Miere și dulceață</a></li>
+                <li><a href="#"><span class="icon"><img src="../Images/icons/bread.png" alt="Băuturi"></span> Panificație</a></li>
+                <li><a href="#"><span class="icon"><img src="../Images/icons/home.png" alt="Băuturi"></span> Casă și grădină</a></li>
+                <li><a href="#"><span class="icon"><img src="../Images/icons/table-saw.png" alt="Băuturi"></span> Lemn și metal</a></li>
+                <li><a href="#"><span class="icon"><img src="../Images/icons/woven-bag.png" alt="Băuturi"></span> Țesut/cusut/brodat</a></li>
+                <li><a href="#"><span class="icon"><img src="../Images/icons/color-palette.png" alt="Băuturi"></span> Pictură</a></li>
+            </ul>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @RenderBody()
+
+    <footer class="loc-footer">
+        <div class="loc-footer-col">
+            <span class="loc-footer-col-title">Meniu</span><br />
+            <a href="#">&#10036; Home</a><br/>
+            <a href="#">&#10036; Categorii</a><br />
+            <a href="#">&#10036; Subcategorii</a><br />
+            <a href="#">&#10036; Informatii adiționale</a><br />
+            <a href="#">&#10036; Termeni si condiții</a><br />
+            <a href="#">&#10036; Contact</a><br />
+
+        </div>
+        <div class="loc-footer-col">
+            <span class="loc-footer-col-title">Munca noastră</span><br />
+            <a href="#">&#10036; Branding</a><br />
+            <a href="#">&#10036; Business</a><br />
+            <a href="#">&#10036; Marketing</a><br />
+            <a href="#">&#10036; Social Media</a><br />
+            <a href="#">&#10036; Digital Solution</a><br />
+            <a href="#">&#10036; Graphic</a><br />
+        </div>
+        <div class="loc-footer-col">
+            <span class="loc-footer-col-title">Contactează-ne</span><br /><br />
+            <p><b>&#9743;</b> 0785432185</p>
+            <p><b>&#9993;</b> contact@producatorilocali.ro</p>
+        </div>
+    </footer>
+
+        <script>
+            var isShowed = false;
+            function showMenu() {
+                if (!isShowed) {
+                    document.getElementById("loc-show-hidden-menu").style.display = "block";
+                    isShowed = true;
+                } else {
+                    document.getElementById("loc-show-hidden-menu").style.display = "none";
+                    isShowed = false;
+                }
+
+            }
+        </script>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,17 +1,343 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿.menu-link{
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Bell MT';
+    color: white;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.menu-link:hover {
+    text-decoration: none;
+    color: white;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.menu-link:focus {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-padding{   
+    min-height: 100px;
+}
+
+.loc-nav-bar {
+    min-height:60px;
+    background-color: #00758f;
+    position: relative;
+}
+
+.loc-nav-left {
+    min-height: 60px;
+    width: auto;
+    padding: 15px 0px;
+    padding-left: 40px;
+    color: white;
+    position: relative;
+    float: left;
+    left: 0;
+    display: block;
+}
+
+.loc-nav-right {
+    min-height: 60px;
+    width: auto;
+    padding: 15px 0px;
+    padding-right: 40px;
+    color: white;
+    position: relative;
+    float: right;
+    right: 0;
+}
+
+ul.loc-nav-ul{
+    list-style-type: none;
+}
+
+    ul.loc-nav-ul li {
+        display: inline;
+        padding-right: 30px;
+    }
+
+ul.loc-nav-ul a {
+    color: white;
+    text-decoration: none;
+}
+
+.loc-button-orange {
+    background-color: #ff9800;
+    color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.loc-button-orange:hover, .loc-button-orange:active, .loc-button-orange:focus {
+    color: white;
+    text-decoration: none;
+}
+
+.loc-text-botton {
+    display: inline;
+    color: #f1f1f1;
+}
+
+.loc-button-icon {
+    font-size: 18px;
+    color: #f1f1f1;
+}
+
+span.loc001 {
+    display: none;
+}
+
+.loc-text-botton:hover, .loc-button-icon:hover{
+    color: white;
+}
+
+.loc-button-orange:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.loc-hidden-bars-menu{
+    display: none;
+}
+
+.loc-show-hidden-menu {
+    width: 80%;
+    min-height: 150px;
+    position: relative;
+    float: left;
+    left: 10%;
+    background-color: white;
+    margin-top: -6px;
+    display: none;
+}
+
+.loc-hidden-bars-menu:hover{
+    color: white;
+}
+
+.loc-logo {
+    min-height: 60px;
+    width: auto;
+    padding: 15px 0px;
+    padding-left: 40px;
+    color: white;
+    position: relative;
+    float: left;
+    left: 0;
+    display: none;
+}
+
+
+.loc-hidden-nav-ul {
+}
+
+.loc-hidden-nav-ul li {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    list-style-type: none;
+    border-bottom: 1px solid #00758f;
+}
+
+.loc-hidden-nav-ul li a {
+    text-decoration: none;
+    color: #00758f;
+}
+
+.loc-hidden-nav-ul li:hover {
+    color: white;
+    background-color: #ff9800;
+    border-bottom: 1px solid #ff9800;
+}
+
+.loc-search-zone {
+    width: 100%;
+    height: 600px;
+    background-color: aliceblue;
+    background-image: url('../Images/background-search-zone.jpg');
+    background-size: cover;
+}
+
+.loc-row{
+    text-align:center;
+    width: 80%;
+    position: relative;
+    float: left;
+    left: 10%;
+    padding: 100px 100px 50px 100px;
+    border-radius: 10px;
+}
+
+.loc-item-search{
+    width: 25%;
+    height: 70px;
+    border-right: 1px solid black;
+    position: relative;
+    float: left;
+    display: inline;
+}
+
+.loc-item-search select, .loc-item-search input, .loc-item-search button{
+    width: 100%;
+    height: 100%;
+    border: 0px solid transparent;
+    padding: 0px 20px;
+}
+
+.loc-item-search button {
+    background-color: #00758f;
+    color: white;
+    font-size: 20px;
+}
+
+.loc-categories-zone {
+    width: 80%;
+    height: auto;
+    float: left;
+    position: relative;
+    left: 10%;
+    background-color: rgba(0, 117, 143, 0.7);
+    border-radius: 10px;
+}
+
+.icon {
+    display: block;
+    margin: 0 auto 12px auto;
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 62px;
+    color: #8d99af;
+    background-color: #fff;
+    transition: all .5s;
+    background-color: white;
+}
+
+.icon img {
+    max-width: 27px;
+}
+
+ul.categories {
+    width: 100%;
+    margin-top: 60px;
+    text-align: center;
+}
+
+ul.categories li {
+    display: inline-block;
+    text-align: center;
+    width: 18%;
+    margin-bottom: 20px;
+}
+
+ul.categories li a {
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #bbc8ca;
+}
+
+ul.categories .icon:hover {
+    background-color: #bbc8ca;
+}
+
+.loc-footer {
+    width: 100%;
+    height: 250px;
+    background-color: #00758f;
+    position: relative;
+}
+
+.loc-footer-col {
+    width: 33.333%;
+    height: 250px;
+    float: left;
+    position: relative;
+    text-align: left;
+    border: 1px solid #bbc8ca;
+    padding: 20px 0px 20px 90px;
+}
+
+    .loc-footer-col a, .loc-footer-col p, .loc-footer-col a:hover {
+        color: #bbc8ca;
+        text-decoration: none;
+    }
+
+.loc-footer-col-title {
+    color: #bbc8ca;
+    font-size: 22px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+/*For small devices*/
+@media (max-width:601px) {
+    .loc-logo {
+        display: none;
+    }
+}
+
+/*For mobile devices*/
+@media (max-width:951px){
+    
+
+}
+
+/*For tablets devices*/
+@media (max-width:1200px){
+    .loc-nav-left {
+        padding-left: 5px;
+    }
+
+    .loc-nav-right {
+        padding-right: 5px;
+    }
+
+    .loc-nav-left {
+        display: none;
+    }
+
+    .loc-button-icon {
+        display: inline;
+    }
+
+    .loc-text-botton {
+        display: none;
+    }
+
+    .loc-hidden-bars-menu {
+        display: inline;
+    }
+
+    .loc-logo {
+        display: inline;
+    }
+
+
+    .loc-item-search {
+        width: 100%;
+        margin-bottom: 5px;
+        border-right: 0px;
+        height: 50px;
+    }
+
+    .loc-search-zone{
+        height: 750px;
+    }
+
+    .loc-footer{
+        height: 750px;
+    }
+
+    .loc-footer-col {
+        width: 100%;
+    }
 }
