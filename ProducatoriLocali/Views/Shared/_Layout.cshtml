@@ -20,27 +20,34 @@
     <header>
         <nav class="loc-nav-bar">
             <div class="loc-logo">
-                <a href="#"><img src="~/Images/LogoProdLoc.png" width="200" /></a>
+                <a href="/"><img src="~/Images/LogoProdLoc.png" width="200" /></a>
             </div>
             <div class="loc-nav-left">
                 <ul class="loc-nav-ul">
-                    <li><a href="#"><img src="~/Images/LogoProdLoc.png" width="200" /></a></li>
-                    <li><a href="#">Categorii</a></li>
+                    <li><a href="/"><img src="~/Images/LogoProdLoc.png" width="200" /></a></li>
+                    <li><a href="/Products/Products">Produse</a></li>
                     <li><a href="#">Informatii generale</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="/Home/Contact">Contact</a></li>
                 </ul>
             </div>
             <div class="loc-nav-right">
-                <a href="#" class="loc-button-orange">
+                <a href="/Messages/Messages" class="loc-button-orange" data-title="Mesajele mele">
                     <b class="loc-button-icon">&#9993;</b>
                 </a>
-                <a href="#" class="loc-button-orange">
+
+                <a href="/Users/MyAccount" class="loc-button-orange" data-title="Contul meu">
                     <b class="loc-button-icon" style="font-size: 22px; padding: 0px; text-align:center;">
-                        &#9786; <i class="fas fa-caret-down"></i>
+                        &#9786;
                     </b>
                 </a>
 
-                <a href="#" class="loc-button-orange">
+                <a href="#" class="loc-button-orange" onclick="document.getElementById('id01').style.display='block'" data-title="Intra in cont">
+                    <b class="loc-button-icon" style="font-size: 22px; padding: 0px; text-align:center;">
+                        &#10148;
+                    </b>
+                </a>
+
+                <a href="/Products/AddProduct" class="loc-button-orange" data-title="Adauga un anunt nou">
                     &#10010;<span class="loc-text-botton "> Adauga anunt</span>
                 </a>
                 <a onclick="showMenu();" class="loc-hidden-bars-menu">
@@ -50,62 +57,45 @@
         </nav>
         <div class="loc-show-hidden-menu" id="loc-show-hidden-menu">
             <ul class="loc-hidden-nav-ul">
-                <li><a href="#">Acasa</a></li>
-                <li><a href="#">Categorii</a></li>
+                <li><a href="/">Acasa</a></li>
+                <li><a href="/Products/Products">Produse</a></li>
                 <li><a href="#">Informatii generale</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="/Home/Contact">Contact</a></li>
             </ul>
         </div>
     </header>
-    <div class="loc-search-zone">
-        <div class="loc-row">
-            <div class="loc-item-search">
-                <select name="area" class="" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
-                    <option selected>Categorie</option>
-                    <option value="New Village">New Village</option>
-                    <option value="Old Town">Old Town</option>
-                    <option value="Modern City">Modern City</option>
-                </select>
+
+    <div id="id01" style="z-index: 99999999;" class="w3-modal">
+        <div class="w3-modal-content">
+            <div class="loc-left-login">
+                <center><p class="loc-title-login">Autentificare</p></center>
+                <center><p>Completati campurile urmatoare pentru a va loga in aplicatie.</p></center>
+                <form method="post" action="">
+                    <label class="loc-label-login" for="Email">Email</label><br />
+                    <input type="text" class="loc-login-input" name="Email" id="Email" placeholder="Email..." /><br />
+
+                    <label class="loc-label-login" for="Parola">Parola</label><br />
+                    <input type="password" class="loc-login-input" name="Parola" id="Parola" placeholder="Parola..." />
+
+                    <input type="submit" class="loc-submit-login" value="Intra in cont" />
+                </form>
             </div>
-            <div class="loc-item-search">
-                <select name="price" class="" aria-label="Default select example" id="chooseCategory" onchange="this.form.click()">
-                    <option selected>Subcategorie</option>
-                    <option value="$100 - $250">$100 - $250</option>
-                    <option value="$250 - $500">$250 - $500</option>
-                    <option value="$500 - $1000">$500 - $1,000</option>
-                    <option value="$1000+">$1,000 or more</option>
-                </select>
+            <div class="loc-right-login">
+                <span onclick="document.getElementById('id01').style.display='none'"
+                      class="w3-button w3-display-topright">&times;</span>
+                <p class="loc-title-login">Inregistrare</p>
+                <p>Daca nu aveti un cont deja creat, atunci va puteti crea unul nou apasand pe butonul de mai jos</p>
+                <a href="/Users/Register" class="loc-submit-login">Creati un cont</a>
             </div>
-            <div class="loc-item-search">
-                <input type="address" name="address" class="" placeholder="Căutați produsul dorit" autocomplete="on" required>
-            </div>
-            <div class="loc-item-search">
-                <button class=""><i class="fa fa-search"></i> Căutați</button>
-            </div>
-        </div>
-        <br />
-        <div class="loc-categories-zone">
-            <ul class="categories">
-                <li><a href="#"><span class="icon"><img src="../Images/icons/cocktail.png" alt="Băuturi"></span> Băuturi</a></li>
-                <li><a href="#"><span class="icon"><img src="../Images/icons/steak.png" alt="Băuturi"></span> Carne și pește</a></li>
-                <li><a href="#"><span class="icon"><img src="../Images/icons/fruits.png" alt="Băuturi"></span> Fructe și legume</a></li>
-                <li><a href="#"><span class="icon"><img src="../Images/icons/boiled-egg.png" alt="Băuturi"></span> Ouă și lapte</a></li>
-                <li><a href="#"><span class="icon"><img src="../Images/icons/honey.png" alt="Băuturi"></span> Miere și dulceață</a></li>
-                <li><a href="#"><span class="icon"><img src="../Images/icons/bread.png" alt="Băuturi"></span> Panificație</a></li>
-                <li><a href="#"><span class="icon"><img src="../Images/icons/home.png" alt="Băuturi"></span> Casă și grădină</a></li>
-                <li><a href="#"><span class="icon"><img src="../Images/icons/table-saw.png" alt="Băuturi"></span> Lemn și metal</a></li>
-                <li><a href="#"><span class="icon"><img src="../Images/icons/woven-bag.png" alt="Băuturi"></span> Țesut/cusut/brodat</a></li>
-                <li><a href="#"><span class="icon"><img src="../Images/icons/color-palette.png" alt="Băuturi"></span> Pictură</a></li>
-            </ul>
         </div>
     </div>
 
-        @RenderBody()
+    @RenderBody()
 
     <footer class="loc-footer">
         <div class="loc-footer-col">
             <span class="loc-footer-col-title">Meniu</span><br />
-            <a href="#">&#10036; Home</a><br/>
+            <a href="#">&#10036; Home</a><br />
             <a href="#">&#10036; Categorii</a><br />
             <a href="#">&#10036; Subcategorii</a><br />
             <a href="#">&#10036; Informatii adiționale</a><br />
@@ -129,22 +119,22 @@
         </div>
     </footer>
 
-        <script>
-            var isShowed = false;
-            function showMenu() {
-                if (!isShowed) {
-                    document.getElementById("loc-show-hidden-menu").style.display = "block";
-                    isShowed = true;
-                } else {
-                    document.getElementById("loc-show-hidden-menu").style.display = "none";
-                    isShowed = false;
-                }
-
+    <script>
+        var isShowed = false;
+        function showMenu() {
+            if (!isShowed) {
+                document.getElementById("loc-show-hidden-menu").style.display = "block";
+                isShowed = true;
+            } else {
+                document.getElementById("loc-show-hidden-menu").style.display = "none";
+                isShowed = false;
             }
-        </script>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+        }
+    </script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

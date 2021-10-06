@@ -6,17 +6,20 @@ using System.Web.Mvc;
 
 namespace ProducatoriLocali.Controllers
 {
-    public class HomeController : Controller
+    public class UsersController : Controller
     {
+        // GET: Users
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Contact()
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        public ActionResult MyAccount()
         {
             return View();
         }

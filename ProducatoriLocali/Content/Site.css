@@ -1,4 +1,43 @@
-﻿.menu-link{
+﻿a[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+[data-title]:hover:after {
+    opacity: 0.8;
+    transition: all 1s ease 0s;
+    visibility: visible;
+}
+
+[data-title]:after {
+    content: attr(data-title);
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    padding: 1px 5px 2px 5px;
+    bottom: -1.6em;
+    white-space: nowrap;
+    box-shadow: 1px 1px 3px #222222;
+    opacity: 0;
+    border: 1px solid #111111;
+    z-index: 99999;
+    visibility: hidden;
+    border-radius: 5px;
+}
+
+[data-title] {
+    position: relative;
+}
+
+
+.menu-link{
     text-decoration: none;
     font-size: 20px;
     font-family: 'Bell MT';
@@ -162,17 +201,31 @@ span.loc001 {
     background-size: cover;
 }
 
-.loc-row{
-    text-align:center;
-    width: 80%;
+.loc-row {
+    text-align: center;
+    width: 100%;
     position: relative;
     float: left;
-    left: 10%;
     padding: 100px 100px 50px 100px;
     border-radius: 10px;
 }
 
-.loc-item-search{
+.loc-search-products {
+    width: 100%;
+    height: 300px;
+    background-color: aliceblue;
+}
+
+.loc-row-products {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    float: left;
+    padding: 40px 100px 40px 100px;
+    border-radius: 10px;
+}
+
+.loc-item-search {
     width: 25%;
     height: 70px;
     border-right: 1px solid black;
@@ -251,8 +304,10 @@ ul.categories .icon:hover {
 .loc-footer {
     width: 100%;
     height: 250px;
-    background-color: #00758f;
+    
     position: relative;
+    bottom: 0px;
+    left: 0px;
 }
 
 .loc-footer-col {
@@ -262,6 +317,7 @@ ul.categories .icon:hover {
     position: relative;
     text-align: left;
     border: 1px solid #bbc8ca;
+    background-color: #00758f;
     padding: 20px 0px 20px 90px;
 }
 
@@ -274,25 +330,695 @@ ul.categories .icon:hover {
     color: #bbc8ca;
     font-size: 22px;
     font-weight: bold;
-    font-style: italic;
+
+}
+
+.loc-product-filter{
+    position: relative;
+    float: left;
+    width: 33.33%;
+    height: auto;
+    text-align: left;
+    text-indent: 50px;
+}
+
+.loc-filters{
+    position: relative;
+    float:left;
+    width: 100%;
+    margin-top: 20px;    
+}
+
+.loc-input{
+    height: 35px;
+    border-radius: 5px;
+    width: 80%;
+    float: left;
+    position: relative;
+    left: 10%;
+    border: 2px solid black;
+}
+
+.loc-input-price {
+    line-height: 32px;
+    border-radius: 5px;
+}
+
+.loc-list-product {
+    width: 100%;
+    height: auto;
+    background-color: white;
+}
+
+.loc-list-content {
+    position: relative;
+    width: 80%;
+    float: left;
+    left: 10%;
+    height: auto;
+    margin-top: 40px;
+    z-index: 99999;
+}
+
+.loc-product {
+    width: 100%;
+    height: 250px;
+    float: left;
+    margin-bottom: 20px;
+    background-color: #f7f7f7;
+    border-radius: 20px;
+}
+
+.loc-prod-img{
+
+    float: left;
+    height: 100%;
+    width: 30%;
+}
+
+.loc-prod-details {
+    display: inline-block;
+    float: left;
+    height: 100%;
+    width: 70%;
+    padding: 10px 30px;
+}
+
+.loc-prod-details h2 {
+    font-family: "Times New Roman";
+}
+
+.loc-prod-name {
+    position: relative;
+    float: left;
+    bottom: -70px;
+    width: auto;
+    text-decoration: none;
+    color: black;
+}
+
+a.loc-link {
+    position: relative;
+    float: right;
+    bottom: -60px;
+    width: auto;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #ff9800;
+    color: black;
+}
+
+.loc-link-title {
+    text-decoration: none;
+    color: black;
+}
+
+.loc-link-title:hover, .loc-link:hover {
+    text-decoration: none;
+    color: #00758f;
+}
+
+.loc-img-card {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-size: cover;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 
-/*For small devices*/
-@media (max-width:601px) {
-    .loc-logo {
-        display: none;
+
+.loc-sections-cards {
+    width: 90%;
+    position: relative;
+    float: left;
+    left: 5%;
+    height: auto;
+    min-height: 400px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.loc-section-card {
+    position: relative;
+    width: 23.5%;
+    height: 380px;
+    margin: 10px 10px 10px 10px;
+    border: 1px solid gray;
+    float: left;
+}
+
+.loc-section-card-img {
+    width: 100%;
+    height: 50%;
+}
+
+.loc-section-card-details {
+    width: 100%;
+    height: 50%;
+    padding: 0px 10px;
+}
+
+.loc-card-img {
+    width: 100%;
+    height: 100%;
+}
+
+.loc-card-title {
+    position: relative;
+    float: left;
+    left: 0px;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.loc-card-price {
+    position: relative;
+    float: right;
+    right: 0px;
+    padding: 5px;
+    background-color: rgba(0, 255, 0, 0.2);
+}
+
+.loc-hr {
+    border-bottom: 2px solid gray;
+    width: auto;
+    height: 50px;
+    padding: 10px;
+    vertical-align: middle;
+    font-family: "Times New Roman";
+    font-weight: bold;
+}
+
+.loc-card-category {
+    width: auto;
+    height: 50px;
+    padding: 2px;
+    vertical-align: middle;
+    font-family: "Times New Roman";
+}
+
+.loc-stars {
+    color: orange;
+    font-size: 24px;
+}
+
+.loc-zone-title {
+    width: 90%;
+    height: 40px;
+    position: relative;
+    float: left;
+    left: 5%;
+    padding: 10px;
+    margin: 10px 0px;
+    text-align: left;
+    font-family: "Times New Roman";
+    font-size: 20px;
+    font-weight: bold;
+    color: darkgray;
+}
+
+.loc-form-title {
+    width: 70%;
+    height: 40px;
+    text-align: center;
+    padding: 10px 30px;
+    margin: 30px 50px;
+    font-family: "Times New Roman";
+    font-size: 20px;
+    font-weight: bold;
+    color: darkgray;
+    z-index: 100;
+}
+
+
+/*Formular adaugare produs nou*/
+.loc-input-form {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.loc-textarea-form {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 300px;
+    overflow: scroll-x;
+}
+
+.loc-back-button {
+    width: 36%;
+    background-color: orange;
+    position: relative;
+    float: left;
+    left: 10%;
+    color: white;
+    padding: 14px;
+    margin: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.loc-back-button:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.loc-submit-form {
+    width: 36%;
+    background-color: #4CAF50;
+    position: relative;
+    float: right;
+    right: 10%;
+    color: white;
+    padding: 14px;
+    margin: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.loc-submit-form:hover {
+    background-color: #45a049;
+}
+
+.loc-product-form {
+    position: relative;
+    width: 70%;
+    height: auto;
+    left: 15%;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    
+}
+
+/*Login modal*/
+.loc-left-login {
+    width: 50%;
+    position: relative;
+    float: left;
+    left: 0px;
+    height: 500px;
+    background-color: white;
+    padding: 30px 50px;
+}
+
+.loc-right-login {
+    width: 50%;
+    position: relative;
+    float: right;
+    right: 0;
+    height: 500px;
+    background-color: #e8443f;
+    padding: 150px 30px;
+    text-align: center;
+}
+
+.loc-login-input {
+    width: 80%;
+    height: 40px;
+    border: 2px solid gray;
+    position: relative;
+    float: left;
+    left: 10%;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.loc-label-login {
+    width: 100%;
+    font-size: 20px;
+    position: relative;
+    float: left;
+    left: 10%;
+    margin-bottom: 10px;
+}
+
+.loc-submit-login {
+    width: 50%;
+    position: relative;
+    float: left;
+    left: 25%;
+    padding: 10px;
+    font-size: 20px;
+    font-family: "Times New Roman";
+    font-weight: bold;
+    background-color: #e8443f;
+    border: 2px solid white;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+.loc-submit-login:hover{
+    text-decoration: none; 
+    color: white;
+}
+
+    .loc-title-login {
+        font-size: 20px;
+        font-family: "Times New Roman";
+        font-weight: bold;
+    }
+
+@media screen and (max-width: 1480px) {
+
+    .loc-section-card {
+        width: 42%;
+        margin: 20px;
+        margin-bottom: 20px;
+    }
+
+    .loc-sections-cards {
+        border: 0px;
     }
 }
 
-/*For mobile devices*/
-@media (max-width:951px){
+.loc-messages-container{
+    position: relative;
+    float: left;
+    left: 10%;
+    width: 80%;
+    height: auto;
+    min-height: 500px;
+    border-left: 2px solid teal;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
+
+.loc-messsages-users {
+    position: relative;
+    float: left;
+    width: 30%;
+    height: auto;
+    min-height: 500px;
+    box-sizing: border-box;
+}
+
+.loc-message-group-user {
+    width: 100%;
+    height: 100px;
     
+}
+
+.loc-message-group-user-active {
+    border-bottom: 2px solid teal;
+    border-right: 2px solid teal;
+    border-top: 2px solid teal;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #f7f7f7;
+    width: 100%;
+    height: 100px;
+}
+
+.loc-messages-photos {
+    position: relative;
+    float: left;
+    width: 30%;
+    height: auto;
+    min-height: 100px;
+    box-sizing: border-box;
+}
+
+.loc-messages-names {
+    position: relative;
+    float: left;
+    width: 70%;
+    height: auto;
+    min-height: 100px;
+    box-sizing: border-box;
+}
+
+.loc-messages-names p{
+    text-align: center;
+    padding-top: 30px;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.loc-messages {
+    position: relative;
+    float: left;
+    width: 70%;
+    height: auto;
+    min-height: 500px;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+}
+
+.loc-user-profile {
+    width: 80%;
+    height: 80px;
+    position: relative;
+    left: 10%;
+    top: 10px;
+    border-radius: 50%;
+}
+
+.loc-message-left {
+    position: relative;
+    float: left;
+    left: 10px;
+    padding: 5px;
+    border: 2px solid teal;
+    border-radius: 20px;
+    width: auto;
+    height: auto;
+    background-color: #13d1d1;
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 20px;
+}
+
+.loc-message-right {
+    position: relative;
+    float: right;
+    right: 10px;
+    padding: 5px;
+    border: 2px solid #b9b8b8;
+    border-radius: 20px;
+    width: auto;
+    height: auto;
+    background-color: #d9d9d9;
+    font-size: 16px;
+    margin: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.loc-row-message{
+    width: 100%;
+    height: auto;
+    min-height:100px;
+}
+
+.loc-tab-title {
+    border-bottom: 3px solid red;
+    border-left: 3px solid red;
+    border-right: 3px solid red;
+    background-color: red;
+    color: white;
+}
+
+.loc-border-bottom{
+    border-bottom: 3px solid red;
+}
+
+
+.loc-contact-section {
+    border-radius: 20px;
+    width: 80%;
+    height: auto;
+    min-height: 500px;
+    position: relative;
+    float: left;
+    left: 10%;
+    margin: 30px 0px;
+    background-color: #e5e8e9;
+    z-index: 9999;
+    padding: 30px;
+}
+
+.loc-contact-section p {
+    text-align: center;
+    text-transform: capitalize;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+
+.loc-contact-input {
+    position: relative;
+    float: left;
+    width: 40%;
+    margin-left: 5%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px solid #cfd3d4;
+}
+
+.loc-contact-textarea {
+    position: relative;
+    float: left;
+    width: 85%;
+    margin-left: 5%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 15px;
+    border: 2px solid #cfd3d4;
+    height: auto;
+    min-height: 200px;
+}
+
+.loc-contact-form {
+    position: relative;
+    float: left;
+    width: 60%;
+    left: 5%;
+    height: auto;
+    min-height: 300px;
+    padding: 0px 20px;
+}
+
+.loc-contact-info {
+    position: relative;
+    float: left;
+    width: 20%;
+    left: 10%;
+    height: auto;
+}
+
+.loc-contact-info-item {
+    width: 100%;
+    height: 100px;
+    padding: 30px;
+    float: left;
+    position: relative;
+    text-align: center;
+}
+
+#MesajeleMele, #AnunturiInactive, #AnunturiActive, #Setari {
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.loc-prod-det-content {
+    float: left;
+    position: relative;
+    width: 80%;
+    left: 10%;
+    height: auto;
+    min-height: 500px;
 
 }
 
+.loc-prod-det-content p{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+
+.loc-prod-det-content h3, .loc-prod-det-content h4 {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.loc-prod-det-img {
+    float: left;
+    position: relative;
+    width: 50%;
+    left: 0;
+    top: 20px;
+    height: auto;
+    min-height: 300px;
+}
+
+.loc-prod-det-info {
+    float: left;
+    position: relative;
+    width: 50%;
+    top: 20px;
+    height: auto;
+    min-height: 300px;
+    padding: 30px;
+    text-align: center;
+}
+
+.loc-prod-det-desc {
+    float: left;
+    position: relative;
+    width: 100%;
+    left: 0;
+    height: auto;
+    min-height: 500px;
+    padding: 5px 40px;
+}
+
+.loc-desc-prod {
+    float: left;
+    position: relative;
+    width: 100%;
+    left: 0;
+    height: auto;
+    padding: 20px;
+    background-color: lightgray;
+    border-radius: 20px;
+}
+
+.loc-prod-det-title {
+    font-family: Amiri;
+    font-weight: bold;
+    color: #00758f;
+}
+
+.loc-sel-det {
+    width: 60%;
+    position: relative;
+    left: 20%;
+    height: auto;
+    min-height: 250px;
+    border: 6px double #00758f;
+    text-align: center;
+}
+
+.loc-price {
+    background-color: #ff9800;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.loc-link-cat, .loc-link-cat:hover {
+    text-decoration: none;
+    color: #00758f;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 22px;
+}
+
+
 /*For tablets devices*/
-@media (max-width:1200px){
+@media (max-width:1200px) {
     .loc-nav-left {
         padding-left: 5px;
     }
@@ -329,15 +1055,127 @@ ul.categories .icon:hover {
         height: 50px;
     }
 
-    .loc-search-zone{
+    .loc-search-zone {
         height: 750px;
     }
 
-    .loc-footer{
+    .loc-search-products {
+        height: 580px;
+    }
+
+    .loc-footer {
         height: 750px;
     }
 
     .loc-footer-col {
         width: 100%;
     }
+
+    .loc-product-filter {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .loc-messages-photos {
+        width: 100%;
+    }
+
+    .loc-messages-names {
+        display: none;
+    }
+
+    .loc-user-profile {
+        width: 40%;
+        left: 30%;
+    }
 }
+
+/*For mobile devices*/
+@media (max-width:900px) {
+
+    .loc-section-card {
+        width: 70%;
+        left: 15%;
+        margin-bottom: 20px;
+    }
+
+    .loc-sections-cards {
+        border: 0px;
+    }
+
+    .loc-submit-form {
+        width: 100%;
+        right: 0;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .loc-back-button {
+        width: 100%;
+        left: 0;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .loc-prod-details {
+        width: 100%;
+        margin-bottom: 0;
+        border-radius: 0;
+    }
+
+    .loc-prod-img {
+        width: 100%;
+        margin-top: 0;
+        border-radius: 0;
+    }
+
+    .loc-product {
+        height: auto;
+        border-radius: 0;
+    }
+
+    .loc-prod-name {
+        bottom: 0;
+    }
+
+    a.loc-link{
+        bottom: 0;
+    }
+
+    .loc-contact-form, .loc-contact-info{
+        width: 100%;
+        margin: 0;
+    }
+
+    .loc-prod-det-img, .loc-prod-det-info{
+        width: 100%;
+    }
+}
+
+
+
+/*For small devices*/
+@media (max-width:601px) {
+    .loc-logo {
+        display: none;
+    }
+
+    .loc-section-card {
+        width: 100%;
+        margin: 0px;
+        left: 0px;
+        margin-bottom: 20px;
+    }
+
+    .loc-sections-cards {
+        border: 0px;
+    }
+
+    .loc-user-profile {
+        width: 60%;
+        left: 20%;
+    }
+}
+
+
+

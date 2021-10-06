@@ -34,7 +34,9 @@ namespace ProducatoriLocali.Models
         [Display(Name = "Post start date")] 
         public DateTime PostStartDate { get; set; } 
         [Display(Name = "Post end date")]  
-        public DateTime PostEndDate { get; set; } 
+        public DateTime PostEndDate { get; set; }
+        [Display(Name = "Locality")]
+        public string Locality { get; set; }
     }
 
     public enum Category 

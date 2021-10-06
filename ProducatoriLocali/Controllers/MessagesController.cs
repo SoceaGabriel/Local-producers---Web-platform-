@@ -6,17 +6,15 @@ using System.Web.Mvc;
 
 namespace ProducatoriLocali.Controllers
 {
-    public class HomeController : Controller
+    public class MessagesController : Controller
     {
+        // GET: Messages
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Contact()
+        public ActionResult Messages()
         {
             return View();
         }

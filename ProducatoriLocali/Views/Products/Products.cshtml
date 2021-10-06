@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="loc-search-products">
+    <div class="loc-row-products">
+        <form method="post" action="">
+            <div class="loc-item-search">
+                <select name="area" class="" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
+                    <option selected>Categorie</option>
+                    <option value="New Village">New Village</option>
+                    <option value="Old Town">Old Town</option>
+                    <option value="Modern City">Modern City</option>
+                </select>
+            </div>
+            <div class="loc-item-search">
+                <select name="price" class="" aria-label="Default select example" id="chooseCategory" onchange="this.form.click()">
+                    <option selected>Subcategorie</option>
+                    <option value="$100 - $250">$100 - $250</option>
+                    <option value="$250 - $500">$250 - $500</option>
+                    <option value="$500 - $1000">$500 - $1,000</option>
+                    <option value="$1000+">$1,000 or more</option>
+                </select>
+            </div>
+            <div class="loc-item-search">
+                <input type="address" name="address" class="" placeholder="Căutați produsul dorit" autocomplete="on" required>
+            </div>
+            <div class="loc-item-search">
+                <button class=""><i class="fa fa-search"></i> Căutați</button>
+            </div>
+
+            <div class="loc-filters">
+                <div class="loc-product-filter">
+                    <p>Județ</p>
+                    <select class="loc-input" aria-label="Default select example" id="chooseCategory" onchange="" value="Județ">
+                        <option selected>Județ</option>
+                        <option value="">Suceava</option>
+                        <option value="">Botoșani</option>
+                        <option value="">Neamț</option>
+                        <option value="">Iași</option>
+                        <option value="">Bacău</option>
+                        <option value="">Vaslui</option>
+                        <option value="">Vrancea</option>
+                        <option value="">Galați</option>
+                    </select>
+                </div>
+                <div class="loc-product-filter">
+                    <p>Data de început a postării</p>
+                    <input type="datetime-local" class="loc-input" value="" />
+                </div>
+                <div class="loc-product-filter">
+                    <p>Preț</p>
+                    <center width="100%">
+                        Min &nbsp;&nbsp;<input type="text" class="loc-input-price" placeholder="Min" size="8" value="" />
+                        &nbsp;&nbsp;Max &nbsp;&nbsp;<input type="text" class="loc-input-price" placeholder="Max" size="8" value="" />
+                    </center>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="loc-list-content">
+    <div class="loc-product">
+        <div class="loc-prod-img">
+            <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
+        </div>
+        <div class="loc-prod-details">
+            <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
+            <p> Localitate: Galati</p>
+            <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
+            <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
+        </div>
+    </div>
+
+    <div class="loc-product">
+        <div class="loc-prod-img">
+            <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
+        </div>
+        <div class="loc-prod-details">
+            <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
+            <p> Localitate: Galati</p>
+            <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
+            <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
+        </div>
+    </div>
+    <div class="loc-product">
+        <div class="loc-prod-img">
+            <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
+        </div>
+        <div class="loc-prod-details">
+            <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
+            <p> Localitate: Galati</p>
+            <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
+            <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
+        </div>
+    </div>
+    <div class="loc-product">
+        <div class="loc-prod-img">
+            <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
+        </div>
+        <div class="loc-prod-details">
+            <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
+            <p> Localitate: Galati</p>
+            <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
+            <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
+        </div>
+    </div>
+</div>
+
+

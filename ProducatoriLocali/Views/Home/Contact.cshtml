@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="loc-contact-section">
+    <p>Contacteaza-ne</p>
+    <p>Completeaza campurile de mai jos si trimite-ne gandul tau</p>
+    <div class="loc-contact-form">
+        <input class="loc-contact-input" type="text" name="ContactName" id="ContactName" placeholder="Nume" />
+        <input class="loc-contact-input" type="text" name="ContactSurname" id="ContactSurname" placeholder="Prenume" />
+        <input class="loc-contact-input" type="text" name="ContactEmail" id="ContactEmail" placeholder="Email" />
+        <input class="loc-contact-input" type="text" name="ContactSubject" id="ContactSubject" placeholder="Subiect" />
+        <textarea class="loc-contact-textarea" placeholder="Introduceti textul dumneavoastra aici . . . "></textarea>
+    </div>
+    <div class="loc-contact-info">
+        <!--Email-->
+        <div class="loc-contact-info-item">
+            <img src="~/Images/icons/contact1.png" width="50" /><br />
+            contact@prod-loc.ro
+        </div>
+
+        <!--Phone-->
+        <div class="loc-contact-info-item">
+            <img src="~/Images/icons/contact2.png" width="50" /><br />
+            0759 531 861
+        </div>
+
+        <!--Address-->
+        <div class="loc-contact-info-item">
+            <img src="~/Images/icons/contact3.png" width="50" /><br />
+            Str. Rachitelor, Nr. 25, Iasi
+        </div>
+    </div>
+</div>
+

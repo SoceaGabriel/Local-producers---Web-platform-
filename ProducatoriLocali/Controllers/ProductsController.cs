@@ -18,5 +18,15 @@ namespace ProducatoriLocali.Controllers
         {
             return View();
         }
+
+        public ActionResult AddProduct()
+        {
+            return View();
+        }
+
+        public ActionResult ProductDetails()
+        {
+            return View();
+        }
     }
 }

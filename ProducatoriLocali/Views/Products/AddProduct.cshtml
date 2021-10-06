@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Adauga un produs nou";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="loc-form-title">Adauga un nou produs</div>
+<div class="loc-product-form">
+    
+    <form method="post" action="">
+        <fieldset style="border: none;">
+            <label for="TitluArticol">Titlul articolului</label>
+            <input class="loc-input-form" type="text" id="TitluArticol" name="TitluArticol" placeholder="Titlul trebuie sa fie unul descriptiv ..." />
+
+            <label for="Cantitate">Cantitate</label>
+            <input class="loc-input-form" type="text" id="Cantitate" name="Cantitate" placeholder="Cantitatea fiecarui produs..." />
+
+            <label for="NrUnitati">Numarul de unitati</label>
+            <input class="loc-input-form" type="number" id="NrUnitati" name="NrUnitati" placeholder="Numarul de unitati ..." />
+
+            <label for="Judet">Judetul</label>
+            <select class="loc-input-form" id="Judet" name="country">
+                <option value="" selected="selected">Alegeti judetul</option>
+                <option value="Suceava">Suceava</option>
+                <option value="Botosani">Botosani</option>
+                <option value="Neamt">Neamt</option>
+                <option value="Iasi">Iasi</option>
+                <option value="Bacau">Bacau</option>
+                <option value="Vaslui">Vaslui</option>
+                <option value="Vrancea">Vrancea</option>
+                <option value="Galati">Galati</option>
+            </select>
+
+            <label for="Descriere">Descrierea produsului</label>
+            <textarea id="Descriere" class="loc-textarea-form" name="Descriere" placeholder="Descrierea detaliata a prodului ..."></textarea>
+
+            <a href="#" class="loc-back-button">Inapoi la pagina principala</a>
+            <input type="submit" class="loc-submit-form" value="Adauga produsul" />
+        </fieldset>
+    </form>
+</div>
+
