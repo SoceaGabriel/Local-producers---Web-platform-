@@ -1,60 +1,55 @@
-﻿
+﻿@model List<ProducatoriLocali.Models.ProductDTO>
 @{
-    ViewBag.Title = "Products";
+    ViewBag.Title = "Produse - ProducatoriLocali.Ro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="loc-search-products">
     <div class="loc-row-products">
-        <form method="post" action="">
+        <form method="get" action="/Products/GetProducts">
             <div class="loc-item-search">
-                <select name="area" class="" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
-                    <option selected>Categorie</option>
-                    <option value="New Village">New Village</option>
-                    <option value="Old Town">Old Town</option>
-                    <option value="Modern City">Modern City</option>
-                </select>
+                @Html.DropDownList("Category",
+               EnumHelper.GetSelectList(typeof(ProducatoriLocali.Models.Category)),
+               "Selecteaza categoria",
+               new { @class = "", @id = "Category", @name="Category", @value = TempData["Category"] })
             </div>
             <div class="loc-item-search">
-                <select name="price" class="" aria-label="Default select example" id="chooseCategory" onchange="this.form.click()">
-                    <option selected>Subcategorie</option>
-                    <option value="$100 - $250">$100 - $250</option>
-                    <option value="$250 - $500">$250 - $500</option>
-                    <option value="$500 - $1000">$500 - $1,000</option>
-                    <option value="$1000+">$1,000 or more</option>
-                </select>
+                @Html.DropDownList("SubCategory",
+               EnumHelper.GetSelectList(typeof(ProducatoriLocali.Models.SubCategory)),
+               "Selecteaza subcategia",
+               new { @class = "", @id = "SubCategory", @name="SubCategory", @value = TempData["SubCategory"] })
             </div>
             <div class="loc-item-search">
-                <input type="address" name="address" class="" placeholder="Căutați produsul dorit" autocomplete="on" required>
+                <input type="text" name="SearchedWords" id="SearchedWords" class="" placeholder="Căutați produsul dorit" autocomplete="on" value="@TempData["SearchedWords"]">
             </div>
             <div class="loc-item-search">
-                <button class=""><i class="fa fa-search"></i> Căutați</button>
+                <button type="submit" id="Cauta" name="Cauta" class=""><i class="fa fa-search"></i> Căutați</button>
             </div>
 
             <div class="loc-filters">
                 <div class="loc-product-filter">
                     <p>Județ</p>
-                    <select class="loc-input" aria-label="Default select example" id="chooseCategory" onchange="" value="Județ">
-                        <option selected>Județ</option>
-                        <option value="">Suceava</option>
-                        <option value="">Botoșani</option>
-                        <option value="">Neamț</option>
-                        <option value="">Iași</option>
-                        <option value="">Bacău</option>
-                        <option value="">Vaslui</option>
-                        <option value="">Vrancea</option>
-                        <option value="">Galați</option>
+                    <select class="loc-input" aria-label="Default select example" id="Judet" name="Judet" onchange="" value="@TempData["Judet"]">
+                        <option selected>@TempData["Judet"]</option>
+                        <option value="Suceava">Suceava</option>
+                        <option value="Botosani">Botosani</option>
+                        <option value="Neamt">Neamt</option>
+                        <option value="Iasi">Iasi</option>
+                        <option value="Bacau">Bacau</option>
+                        <option value="Vaslui">Vaslui</option>
+                        <option value="Vrancea">Vrancea</option>
+                        <option value="Galati">Galati</option>
                     </select>
                 </div>
                 <div class="loc-product-filter">
                     <p>Data de început a postării</p>
-                    <input type="datetime-local" class="loc-input" value="" />
+                    <input type="datetime-local" id="StartDate" name="StartDate" class="loc-input" value="@TempData["StartDate"]" />
                 </div>
                 <div class="loc-product-filter">
                     <p>Preț</p>
                     <center width="100%">
-                        Min &nbsp;&nbsp;<input type="text" class="loc-input-price" placeholder="Min" size="8" value="" />
-                        &nbsp;&nbsp;Max &nbsp;&nbsp;<input type="text" class="loc-input-price" placeholder="Max" size="8" value="" />
+                        Min &nbsp;&nbsp;<input type="text" id="MinPrice" name="MinPrice" class="loc-input-price" placeholder="Min" size="8" value="@TempData["MinPrice"]" />
+                        &nbsp;&nbsp;Max &nbsp;&nbsp;<input type="text" id="MaxPrice" name="MaxPrice" class="loc-input-price" placeholder="Max" size="8" value="@TempData["MaxPrice"]" />
                     </center>
                 </div>
             </div>
@@ -63,51 +58,32 @@
 </div>
 
 <div class="loc-list-content">
-    <div class="loc-product">
-        <div class="loc-prod-img">
-            <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
-        </div>
-        <div class="loc-prod-details">
-            <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
-            <p> Localitate: Galati</p>
-            <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
-            <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
-        </div>
-    </div>
+    @{ if (Model.Count > 0)
+        {
+            foreach (var prod in Model)
+            {
+                <div class="loc-product">
+                    <div class="loc-prod-img">
+                        <img src="~/Images/ProductsImages/@prod.ImagePath" class="loc-img-card" />
+                    </div>
+                    <div class="loc-prod-details">
+                        <h2 style="width: 100%"><span class="loc-link-title">@prod.Title</span> <span style="position: relative; float: right; right: 0; text-align: right; background-color: rgba(0, 255, 0, 0.1); font-size:22px; color: black; padding: 5px;">@prod.Price Lei/Bucata</span></h2>
 
-    <div class="loc-product">
-        <div class="loc-prod-img">
-            <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
-        </div>
-        <div class="loc-prod-details">
-            <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
-            <p> Localitate: Galati</p>
-            <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
-            <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
-        </div>
-    </div>
-    <div class="loc-product">
-        <div class="loc-prod-img">
-            <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
-        </div>
-        <div class="loc-prod-details">
-            <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
-            <p> Localitate: Galati</p>
-            <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
-            <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
-        </div>
-    </div>
-    <div class="loc-product">
-        <div class="loc-prod-img">
-            <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
-        </div>
-        <div class="loc-prod-details">
-            <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
-            <p> Localitate: Galati</p>
-            <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
-            <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
-        </div>
-    </div>
+                        <p> Judet: @prod.Locality.ToString()</p>
+                        <p class="loc-prod-name">Produs vândut de: @prod.Seller.FirstName @prod.Seller.LastName</p>
+                        <a class="loc-link" href="/Products/ProductDetails?ProdId=@prod.ProductId"><i class="far fa-eye"></i> Vezi anunțul</a>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p style="text-align:center;">Momentan nu sunt produse conform cerintelor. Va rugam reveniti mai tarziu.</p>
+        }
+
+    }
+
+
 </div>
 
 

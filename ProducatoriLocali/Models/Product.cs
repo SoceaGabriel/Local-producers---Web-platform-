@@ -14,33 +14,35 @@ namespace ProducatoriLocali.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public Guid ProductId { get; set; } 
         [Required(ErrorMessage = "Title is required to be completed.")] 
-        [Display(Name = "Title")] 
+        [Display(Name = "Titlu")] 
         public string Title { get; set; } 
-        [Display(Name = "Desctription")] 
+        [Display(Name = "Descriere")] 
         public string Description { get; set; } 
         [Required(ErrorMessage = "Price is required to be complete.")] 
-        [Display(Name = "Price")] 
+        [Display(Name = "Pret")] 
         public double Price { get; set; } 
         [Required(ErrorMessage = "Quantity is required to be complete.")] 
-        [Display(Name = "Quantity")] 
-        public float Quantity { get; set; } 
+        [Display(Name = "Cantitate")] 
+        public float Quantity { get; set; }
+        [Display(Name = "Numar de unitati")]
+        public int UnitsNumber { get; set; }
         public Guid SellerId { get; set; } 
-        [Display(Name = "User")] 
-        public ApplicationUser User { get; set; } 
-        [Display(Name = "Category")] 
+        [Display(Name = "Categorie")] 
         public Category Category { get; set; } 
-        [Display(Name = "Subcategory")] 
+        [Display(Name = "Subcategorie")] 
         public SubCategory SubCategory { get; set; } 
-        [Display(Name = "Post start date")] 
-        public DateTime PostStartDate { get; set; } 
-        [Display(Name = "Post end date")]  
-        public DateTime PostEndDate { get; set; }
-        [Display(Name = "Locality")]
+        [Display(Name = "Data postarii")] 
+        public DateTime? PostStartDate { get; set; } 
+        [Display(Name = "Data de sfarsit a postarii")]  
+        public DateTime? PostEndDate { get; set; }
+        [Display(Name = "Judet")]
         public string Locality { get; set; }
+        [Display(Name = "ImagePath")]
+        public string ImagePath { get; set; }
     }
 
     public enum Category 
-    { 
+    {
         [Display(Name = "Produse alimentare")] 
         ProduseAlimentare, 
         [Display(Name = "Produse de artizanat")] 

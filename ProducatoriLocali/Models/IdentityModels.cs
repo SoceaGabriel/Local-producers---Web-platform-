@@ -21,8 +21,9 @@ namespace ProducatoriLocali.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<LocalProducer> LocalProducer { get; set; }
-        public DbSet<Product> Product  { get; set; }
+        public DbSet<LocalProducer> LocalProducers { get; set; }
+        public DbSet<Product> Products  { get; set; }
+        public DbSet<User> Utilizatori { get; set; }
         public DbSet<UsersMessages> UsersMessages  { get; set; }
 
         public ApplicationDbContext()

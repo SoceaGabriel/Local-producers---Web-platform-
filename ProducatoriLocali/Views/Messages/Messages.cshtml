@@ -1,83 +1,114 @@
-﻿
+﻿@model List<ProducatoriLocali.Models.UsersMessages>
 @{
-    ViewBag.Title = "Messages";
+    ViewBag.Title = "Mesajele mele - ProducatoriLocali.Ro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<center><h2>Mesajele mele</h2></center>
+<center>
+    <h2>
+        Mesajele mele cu utilizatorul:
+        @if (Session["LocalProducerAppUserFirstName"] != null && Session["LocalProducerAppUserLastName"] != null)
+        {
+            <span> @ViewBag.CurrentUserName</span>
+        }
+    </h2>
+</center>
+
+<script>
+    var messArray = [];
+    $.ajax({
+        url: '/Messages/GetUsersConversation',
+        type: 'GET',
+        async: false,
+        success: function (data) {
+            //var dataParse = JSON.parse(data.data);
+            messArray = data.data;
+        }
+    });
+    console.log("Data: ", messArray);
+</script>
 
 <div class="loc-messages-container">
-    <div class="loc-messsages-users">
+    <div id="loc-messsages-users" class="loc-messsages-users">
 
-        <div class="loc-message-group-user">
-            <div class="loc-messages-photos">
-                <img class="loc-user-profile" title="Andra Herciu" src="~/Images/users/user1.png" />
-            </div>
-            <div class="loc-messages-names">
-                <p>Andra Herciu</p>
-            </div>
-        </div>
-
-        <div class="loc-message-group-user">
-            <div class="loc-messages-photos">
-                <img class="loc-user-profile" title="Shakira" src="~/Images/users/user2.png" />
-            </div>
-            <div class="loc-messages-names">
-                <p>Shakira</p>
-            </div>
-        </div>
-
-        <div class="loc-message-group-user-active">
-            <div class="loc-messages-photos">
-                <img class="loc-user-profile" title="Mira Dira" src="~/Images/users/user4.png" />
-            </div>
-            <div class="loc-messages-names">
-                <p>Mira Dira</p>
-            </div>
-        </div>
-
-        <div class="loc-message-group-user">
-            <div class="loc-messages-photos">
-                <img class="loc-user-profile" title="Alibaba Tudor" src="~/Images/users/user5.png" />
-            </div>
-            <div class="loc-messages-names">
-                <p>Alibaba Tudor</p>
-            </div>
-        </div>
+        @{
+            if (ViewBag.ConversationWithUsers.Count > 0)
+            {
+                foreach (var mess in ViewBag.ConversationWithUsers)
+                {
+                    <div class=@(ViewBag.CurrentUserId == mess.UserId ? "loc-message-group-user-active" : "loc-message-group-user")>
+                        <a href="/Messages/Messages?UserID=@mess.UserId">
+                            <div class="loc-messages-photos">
+                                <!--<img class="loc-user-profile" title="@mess" src="~/Images/users/user1dd.png" />-->
+                                <span class="loc-user-profile">@mess.UserName.Split(' ')[0][0]@mess.UserName.Split(' ')[1][0]</span>
+                            </div>
+                            <div class="loc-messages-names" style="padding-top: 9px; padding-left: 15px;">
+                                <span> @mess.UserName</span>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+            else
+            {
+                <center style="padding: 50px 10px;"><p>Momentan nu aveti conversatii cu alti utilizatori!</p></center>
+            }
+        }
 
     </div>
     <div class="loc-messages">
-        <div class="loc-row-message">
-            <div class="loc-message-left">
-                <p>Buna ziua, stimata duamna, Shakira!</p>
-            </div>
-        </div>
-        <div class="loc-row-message">
-            <div class="loc-message-right">
-                <p>Buna ziua, domnule Armando!</p>
-            </div>
-        </div>
 
-        <div class="loc-row-message">
-            <div class="loc-message-left">
-                <p>Ce faci sefu? Am auzit ca ai bemveu de vinzare, mai e valabil?</p>
-            </div>
-        </div>
-        <div class="loc-row-message">
-            <div class="loc-message-right">
-                <p>Da boss, e valabil. Ia zi esti interesat?</p>
-            </div>
-        </div>
+        @{
+            foreach (var message in Model)
+            {
+                if (message.UserWhoSendMessageId == Guid.Parse(Session["LocalProducerAppUserId"].ToString()))
+                {
+                    <div class="loc-row-message">
+                        <div class="loc-message-right">
+                            <p style="margin:0;">@message.MessageText</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="loc-row-message">
+                        <div class="loc-message-left">
+                            <p style="margin:0;">@message.MessageText</p>
+                        </div>
+                    </div>
+                }
+            }
+        }
 
-        <div class="loc-row-message">
-            <div class="loc-message-left">
-                <p>Da bosulica. Care e ultimul pret?</p>
-            </div>
-        </div>
-        <div class="loc-row-message">
-            <div class="loc-message-right">
-                <p>Bosulica sub 5000 de euroi nu il dau</p>
-            </div>
-        </div>
+    </div>
+    <div class="loc-messages-form">
+        <textarea class="loc-message-textarea" placeholder="Trimiteti un raspuns clientului . . ." id="UserMessageText" name="UserMessageTextBack" value=""></textarea>
+        <center><button class="loc-button-orange" style="border: none; margin-bottom: 20px;" id="SendMessageBack" name="SendMessageBack">Trimite mesajul</button></center>
     </div>
 </div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("snackbar-ok");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 4000);
+    }
+
+    $("#SendMessageBack").click(function () {
+        var textareaValue = document.getElementById("UserMessageText").value;
+        console.log("textareaValue: ", textareaValue);
+        $.ajax({
+            url: '/Messages/AddUserMessages',
+            type: 'POST',
+            data: {
+                send: "@Guid.Parse(Session["LocalProducerAppUserId"].ToString())",
+                receiv: "@ViewBag.CurrentUserId",
+                mess: textareaValue
+            },
+            success: function (data) {
+                console.log("Data: ", data);
+                location.reload();
+            }
+        });
+    });
+</script>

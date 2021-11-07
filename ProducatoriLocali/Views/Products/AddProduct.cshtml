@@ -1,25 +1,40 @@
-﻿
+﻿@model ProducatoriLocali.Models.Product
 @{
-    ViewBag.Title = "Adauga un produs nou";
+    ViewBag.Title = "Adauga un produs nou - ProducatoriLocali.Ro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="loc-form-title">Adauga un nou produs</div>
 <div class="loc-product-form">
-    
-    <form method="post" action="">
+
+    <form method="post" action="/Products/AddProduct">
         <fieldset style="border: none;">
-            <label for="TitluArticol">Titlul articolului</label>
-            <input class="loc-input-form" type="text" id="TitluArticol" name="TitluArticol" placeholder="Titlul trebuie sa fie unul descriptiv ..." />
+            <label for="Title">Titlul articolului</label>
+            <input class="loc-input-form" type="text" id="Title" name="Title" required="required" placeholder="Titlul trebuie sa fie unul descriptiv ..." />
 
-            <label for="Cantitate">Cantitate</label>
-            <input class="loc-input-form" type="text" id="Cantitate" name="Cantitate" placeholder="Cantitatea fiecarui produs..." />
+            <label for="Quantity">Cantitate</label>
+            <input class="loc-input-form" type="text" id="Quantity" name="Quantity" required="required" placeholder="Cantitatea fiecarui produs..." />
 
-            <label for="NrUnitati">Numarul de unitati</label>
-            <input class="loc-input-form" type="number" id="NrUnitati" name="NrUnitati" placeholder="Numarul de unitati ..." />
+            <label for="UnitsNumber">Numarul de unitati</label>
+            <input class="loc-input-form" type="number" id="UnitsNumber" name="UnitsNumber" required="required" placeholder="Numarul de unitati ..." />
 
-            <label for="Judet">Judetul</label>
-            <select class="loc-input-form" id="Judet" name="country">
+            <label for="Price">Pret</label>
+            <input class="loc-input-form" type="number" id="Price" name="Price" required="required" placeholder="Pret ..." />
+
+            @Html.LabelFor(x => x.Category)
+            @Html.DropDownList("Category",
+               EnumHelper.GetSelectList(typeof(ProducatoriLocali.Models.Category)),
+               "Selecteaza categoria",
+               new { @class = "loc-input-form", @id = "Category", @name="Category" })
+
+            @Html.LabelFor(x => x.SubCategory)
+            @Html.DropDownList("SubCategory",
+               EnumHelper.GetSelectList(typeof(ProducatoriLocali.Models.SubCategory)),
+               "Selecteaza subcategia",
+               new { @class = "loc-input-form", @id = "SubCategory", @name="SubCategory" })
+
+            <label for="Locality">Judetul</label>
+            <select class="loc-input-form" id="Locality" name="Locality">
                 <option value="" selected="selected">Alegeti judetul</option>
                 <option value="Suceava">Suceava</option>
                 <option value="Botosani">Botosani</option>
@@ -31,12 +46,24 @@
                 <option value="Galati">Galati</option>
             </select>
 
-            <label for="Descriere">Descrierea produsului</label>
-            <textarea id="Descriere" class="loc-textarea-form" name="Descriere" placeholder="Descrierea detaliata a prodului ..."></textarea>
+            <label for="ImagePath">Incarcati imaginea</label>
+            <input type="file" id="ImagePath" name="ImagePath"><br />
 
-            <a href="#" class="loc-back-button">Inapoi la pagina principala</a>
+            <label for="Description">Descrierea produsului</label>
+            <textarea id="Description" class="loc-textarea-form" name="Description" placeholder="Descrierea detaliata a prodului ..."></textarea>
+
+            <a href="/" class="loc-back-button">Inapoi la pagina principala</a>
             <input type="submit" class="loc-submit-form" value="Adauga produsul" />
         </fieldset>
     </form>
 </div>
 
+<script>
+    
+</script>
+
+@if (ViewBag.Message != null)
+{
+    <div id="snackbar-ok">@ViewBag.Message</div>
+    <script>myFunction();</script>
+}

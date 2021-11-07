@@ -1,36 +1,79 @@
-﻿
+﻿@model ProducatoriLocali.Models.ProductDTO
 @{
-    ViewBag.Title = "ProductDetails";
+    ViewBag.Title = "Descriere produs - " + Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 <div class="loc-prod-det-content" style="z-index: 9999000;">
-    <h4><a class="loc-link-cat" href="/">Acasa</a> > <a class="loc-link-cat" href="/Products/Products">Produse</a> > <a class="loc-link-cat" href="#">Categorie</a> > <a class="loc-link-cat" href="#">Subcategorie</a></h4>
+    <h4><a class="loc-link-cat" href="/">Acasa</a> > 
+    <a class="loc-link-cat" href="/Products/Products">Produse</a> > 
+    <a class="loc-link-cat" href="#">@Html.DisplayTextFor(model => model.Category)</a> > 
+    <a class="loc-link-cat" href="#">@Html.DisplayFor(model => model.SubCategory)</a></h4>
     <div class="loc-prod-det-img">
-        <img width="100%" src="~/Images/miere-albine.jpg"/>
+        <img width="100%" src="~/Images/ProductsImages/@Model.ImagePath"/>
     </div>
     <div class="loc-prod-det-info">
-        <h1 class="loc-prod-det-title">Miere de albine poliflora naturala</h1>
-        <p class="loc-price">25 lei/kg</p>
+        <h1 class="loc-prod-det-title">@Model.Title</h1>
+        <p class="loc-price">@Model.Price Lei/Bucata</p>
         <div class="loc-sel-det">
             <img src="~/Images/logo-user.png" width="60%"/>
-            <h3>Apopei Ion</h3>
+            <h3>@Model.Seller.FirstName @Model.Seller.LastName</h3>
         </div>
     </div>
     <div class="loc-prod-det-desc">
 
-        <p><b>Categorie:</b> Sanatate</p>
-        <p><b>Subcategorie:</b> Sanatate din natura</p>
-        <p><b>Cantitate:</b> 300g</p>
-        <p><b>Numar de unitati:</b> 5 buc.</p>
-        <p><b>Localitate:</b> Rediu, Neamt</p>
-        <p><b>Data postarii:</b> 10.10.2021</p>
+        <p><b>Categorie:</b> @Model.Category.ToString()</p>
+        <p><b>Subcategorie:</b> @Model.SubCategory.ToString()</p>
+        <p><b>Cantitate:</b> @Model.Quantity</p>
+        <p><b>Numar de unitati:</b> @Model.UnitsNumber</p>
+        <p><b>Judet:</b> @Model.Locality</p>
+        <p><b>Data postarii:</b> @Model.PostStartDate</p>
+        <p><b>Data de sfarsit a postarii:</b> @Model.PostEndDate</p>
 
         <h2>Detaliile produsului</h2>
         <div class="loc-desc-prod">
-            <p>Ala bala portocala</p>
+            @Html.DisplayTextFor(model => model.Description)
         </div>
+
+        @{
+            if (Session["LocalProducerAppUserId"] != null && Guid.Parse(Session["LocalProducerAppUserId"].ToString()) != Model.Seller.UserId)
+            {
+                <textarea class="loc-message-textarea" placeholder="Scrieti un mesaj vanzatorului . . ." id="UserMessageText" name="UserMessageText" value=""></textarea>
+                <center><button class="loc-button-orange" style="border: none; margin-bottom: 20px;" id="SendMessageButton" name="SendMessageButton">Trimite mesajul vanzatorului</button></center>
+
+                <script>
+                    function myFunction() {
+                        var x = document.getElementById("snackbar-ok");
+                        x.className = "show";
+                        setTimeout(function () { x.className = x.className.replace("show", ""); }, 4000);
+                    }
+
+                    $("#SendMessageButton").click(function () {
+                        var textareaValue = document.getElementById("UserMessageText").value;
+                        console.log("textareaValue: ", textareaValue);
+                        $.ajax({
+                            url: '/Messages/AddUserMessages',
+                            type: 'POST',
+                            data: {
+                                send: "@Guid.Parse(Session["LocalProducerAppUserId"].ToString())",
+                                receiv: "@Model.Seller.UserId",
+                                mess: textareaValue
+                            },
+                            success: function (data) {
+                                /*console.log("Data: ", data);
+                                var dataParse = JSON.parse(data.data);*/
+                                $('#snackbar-ok').html(data.messaggeText);
+                                myFunction();
+                                document.getElementById("UserMessageText").value = "";
+                            }
+                        });
+                    });
+                </script>
+            }
+        }
     </div>
+
+    
 </div>
+
+<div id="snackbar-ok"></div>

@@ -1,14 +1,13 @@
-﻿
+﻿@model ProducatoriLocali.Models.User
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Creare cont - ProducatoriLocali.Ro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="loc-form-title">Creaza un cont nou</div>
 <div class="loc-product-form">
-
-    <form method="post" action="">
-        <fieldset style="border: none;">
+    <form method="post" action="/Users/Register">
+        <fieldset>
             <label for="LastName">Nume*</label>
             <input class="loc-input-form" type="text" id="LastName" name="LastName" required="required" placeholder="Nume . . ." />
 
@@ -24,8 +23,8 @@
             <label for="Password">Parola*</label>
             <input class="loc-input-form" type="password" id="Password" name="Password" required="required" placeholder="Parola . . ." />
 
-            <label for="RePassword">Reintroduceti parola*</label>
-            <input class="loc-input-form" type="password" id="RePassword" name="RePassword" required="required" placeholder="Reintroduceti parola . . ." />
+            <label for="ReenteredPassword">Reintroduceti parola*</label>
+            <input class="loc-input-form" type="password" id="ReenteredPassword" name="ReenteredPassword" required="required" placeholder="Reintroduceti parola . . ." />
 
             <a href="/" class="loc-back-button">Inapoi la pagina principala</a>
             <input type="submit" class="loc-submit-form" value="Inregistreaza-te" />
@@ -33,3 +32,16 @@
     </form>
 </div>
 
+<script>
+    function myFunction() {
+        var x = document.getElementById("snackbar-ok");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 4000);
+    }
+</script>
+
+@if (ViewBag.Message != null)
+{
+    <div id="snackbar-ok">@ViewBag.Message</div>
+    <script>myFunction();</script>
+}

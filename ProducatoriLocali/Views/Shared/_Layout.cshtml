@@ -31,25 +31,36 @@
                 </ul>
             </div>
             <div class="loc-nav-right">
-                <a href="/Messages/Messages" class="loc-button-orange" data-title="Mesajele mele">
-                    <b class="loc-button-icon">&#9993;</b>
-                </a>
+                @if (Session["LocalProducerAppUserId"] != null)
+                {
+                    <a href="/Messages/Messages" class="loc-button-orange" data-title="Mesajele mele">
+                        <b class="loc-button-icon">&#9993;</b>
+                    </a>
 
-                <a href="/Users/MyAccount" class="loc-button-orange" data-title="Contul meu">
-                    <b class="loc-button-icon" style="font-size: 22px; padding: 0px; text-align:center;">
-                        &#9786;
-                    </b>
-                </a>
+                    <a href="/Users/MyAccount" class="loc-button-orange" data-title="Contul meu">
+                        <b class="loc-button-icon" style="font-size: 22px; padding: 0px; text-align:center;">
+                            &#9786;
+                        </b>
+                    </a>
 
-                <a href="#" class="loc-button-orange" onclick="document.getElementById('id01').style.display='block'" data-title="Intra in cont">
-                    <b class="loc-button-icon" style="font-size: 22px; padding: 0px; text-align:center;">
-                        &#10148;
-                    </b>
-                </a>
+                    <a href="/Users/Logout" class="loc-button-orange" data-title="Deconectare" id="logoutUser">
+                        <b class="loc-button-icon" style="font-size: 22px; padding: 0px; text-align:center;">
+                            &#10149;
+                        </b>
+                    </a>
+                    <a href="/Products/AddProduct" class="loc-button-orange" data-title="Adauga un anunt nou">
+                        &#10010;<span class="loc-text-botton "> Adauga anunt</span>
+                    </a>
+                }
+                else
+                {
+                    <a href="#" class="loc-button-orange" onclick="document.getElementById('id01').style.display='block'" data-title="Intra in cont">
+                        <b class="loc-button-icon" style="font-size: 22px; padding: 0px; text-align:center;">
+                            &#10148;
+                        </b>
+                    </a>
+                }
 
-                <a href="/Products/AddProduct" class="loc-button-orange" data-title="Adauga un anunt nou">
-                    &#10010;<span class="loc-text-botton "> Adauga anunt</span>
-                </a>
                 <a onclick="showMenu();" class="loc-hidden-bars-menu">
                     <i class="fas fa-bars" style="font-size: 24px;"></i>
                 </a>
@@ -70,7 +81,7 @@
             <div class="loc-left-login">
                 <center><p class="loc-title-login">Autentificare</p></center>
                 <center><p>Completati campurile urmatoare pentru a va loga in aplicatie.</p></center>
-                <form method="post" action="">
+                <form method="GET" action="/Users/Login">
                     <label class="loc-label-login" for="Email">Email</label><br />
                     <input type="text" class="loc-login-input" name="Email" id="Email" placeholder="Email..." /><br />
 
@@ -131,6 +142,17 @@
             }
 
         }
+
+        /*$("#logoutUser").click(function () {
+            $.ajax({
+                url: "",
+                async: false,
+                success: function (result) {
+                    location.reload();
+                }
+            });
+        });*/
+
     </script>
 
     @Scripts.Render("~/bundles/jquery")

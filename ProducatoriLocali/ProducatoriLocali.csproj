@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.ChildKernel, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.ChildKernel.3.3.0\lib\net45\Ninject.Extensions.ChildKernel.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -107,6 +113,9 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebApiContrib.IoC.Ninject, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebApiContrib.IoC.Ninject.0.9.3.0\lib\net40\WebApiContrib.IoC.Ninject.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -178,22 +187,57 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\apiAccountManagerController.cs" />
+    <Compile Include="Controllers\apiUserMessagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\apiProductController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110081916574_Add new fields in db.cs" />
+    <Compile Include="Migrations\202110081916574_Add new fields in db.Designer.cs">
+      <DependentUpon>202110081916574_Add new fields in db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110211949402_Add some fields.cs" />
+    <Compile Include="Migrations\202110211949402_Add some fields.Designer.cs">
+      <DependentUpon>202110211949402_Add some fields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110271722071_InitialCreate.cs" />
+    <Compile Include="Migrations\202110271722071_InitialCreate.Designer.cs">
+      <DependentUpon>202110271722071_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110271830553_InitialCreate1.cs" />
+    <Compile Include="Migrations\202110271830553_InitialCreate1.Designer.cs">
+      <DependentUpon>202110271830553_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\LocalProducer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MainPageProductsViewModel.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductDTO.cs" />
+    <Compile Include="Models\SendUserMessagesDTO.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserProductsViewModel.cs" />
+    <Compile Include="Models\UsersConversations.cs" />
     <Compile Include="Models\UsersMessages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Repositories\AccountManagerRepo.cs" />
+    <Compile Include="Repositories\ApiAccountResponse.cs" />
+    <Compile Include="Repositories\ApiMessagesResponse.cs" />
+    <Compile Include="Repositories\ApiProductResponse.cs" />
+    <Compile Include="Repositories\DependencyResolver.cs" />
+    <Compile Include="Repositories\IAccountManagerRepository.cs" />
+    <Compile Include="Repositories\IProductRepository.cs" />
+    <Compile Include="Repositories\IUserMessagesRepository.cs" />
+    <Compile Include="Repositories\ProductRepo.cs" />
+    <Compile Include="Repositories\UserMessagesRepo.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -290,6 +334,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202110081916574_Add new fields in db.resx">
+      <DependentUpon>202110081916574_Add new fields in db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110211949402_Add some fields.resx">
+      <DependentUpon>202110211949402_Add some fields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110271722071_InitialCreate.resx">
+      <DependentUpon>202110271722071_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110271830553_InitialCreate1.resx">
+      <DependentUpon>202110271830553_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

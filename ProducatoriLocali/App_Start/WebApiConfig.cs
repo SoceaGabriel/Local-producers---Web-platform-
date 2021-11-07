@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using ProducatoriLocali.Repositories;
 
 namespace ProducatoriLocali
 {
@@ -17,6 +18,8 @@ namespace ProducatoriLocali
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
+            config.DependencyResolver = new DependencyResolver();
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -24,6 +27,12 @@ namespace ProducatoriLocali
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "CustomApi",
+                routeTemplate: "api/{controller}/{method}",
+                defaults: new { method = RouteParameter.Optional }
             );
         }
     }

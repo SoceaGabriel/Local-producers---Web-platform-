@@ -304,7 +304,7 @@ ul.categories .icon:hover {
 .loc-footer {
     width: 100%;
     height: 250px;
-    
+    z-index: -99999;
     position: relative;
     bottom: 0px;
     left: 0px;
@@ -487,7 +487,7 @@ a.loc-link {
     height: 100%;
 }
 
-.loc-card-title {
+.loc-card-title, .loc-card-title:hover {
     position: relative;
     float: left;
     left: 0px;
@@ -495,6 +495,8 @@ a.loc-link {
     color: black;
     font-size: 20px;
 }
+
+
 
 .loc-card-price {
     position: relative;
@@ -720,7 +722,7 @@ a.loc-link {
     height: auto;
     min-height: 500px;
     border-left: 2px solid teal;
-    margin-top: 30px;
+    padding-top: 0px;
     margin-bottom: 30px;
     box-sizing: border-box;
 }
@@ -732,23 +734,26 @@ a.loc-link {
     height: auto;
     min-height: 500px;
     box-sizing: border-box;
+    
 }
 
 .loc-message-group-user {
     width: 100%;
     height: 100px;
-    
+    padding-top: 25px;
 }
 
 .loc-message-group-user-active {
-    border-bottom: 2px solid teal;
-    border-right: 2px solid teal;
-    border-top: 2px solid teal;
+    border-bottom: 5px solid teal;
+    border-right: 5px solid teal;
+    border-top: 5px solid teal;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     background-color: #f7f7f7;
     width: 100%;
     height: 100px;
+    padding-top: 25px;
+    /*margin-top: -27px;*/
 }
 
 .loc-messages-photos {
@@ -788,13 +793,22 @@ a.loc-link {
     box-sizing: border-box;
 }
 
+.loc-messages-form {
+    position: relative;
+    float: right;
+    width: 70%;
+    height: auto;
+    min-height: 500px;
+    box-sizing: border-box;
+}
+
 .loc-user-profile {
-    width: 80%;
-    height: 80px;
+    padding: 30px;
     position: relative;
     left: 10%;
     top: 10px;
     border-radius: 50%;
+    border: 2px solid black;
 }
 
 .loc-message-left {
@@ -830,7 +844,7 @@ a.loc-link {
 .loc-row-message{
     width: 100%;
     height: auto;
-    min-height:100px;
+    min-height: 79px;
 }
 
 .loc-tab-title {
@@ -1016,6 +1030,63 @@ a.loc-link {
     font-size: 22px;
 }
 
+#snackbar-ok {
+    visibility: hidden;
+    background-color: #2dfbaf;
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    padding: 22px;
+    position: fixed;
+    z-index: 1;
+    width: 70%;
+    left: 15%;
+    bottom: 100px;
+    font-size: 18px;
+}
+
+#snackbar-ok.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 4s;
+    animation: fadein 0.5s, fadeout 0.5s 4s;
+}
+
+
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+.loc-message-textarea {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    padding: 20px;
+    min-height: 200px;
+
+}
+
 
 /*For tablets devices*/
 @media (max-width:1200px) {
@@ -1078,6 +1149,7 @@ a.loc-link {
 
     .loc-messages-photos {
         width: 100%;
+        
     }
 
     .loc-messages-names {
@@ -1087,6 +1159,8 @@ a.loc-link {
     .loc-user-profile {
         width: 40%;
         left: 30%;
+        border-radius: 50%;
+        border: 2px solid black;
     }
 }
 
@@ -1174,6 +1248,8 @@ a.loc-link {
     .loc-user-profile {
         width: 60%;
         left: 20%;
+        border-radius: 50%;
+        border: 2px solid black;
     }
 }
 

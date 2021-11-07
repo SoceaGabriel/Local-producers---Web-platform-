@@ -1,10 +1,16 @@
-﻿
+﻿@model ProducatoriLocali.Models.UserProductsViewModel
 @{
-    ViewBag.Title = "Contul meu";
+    ViewBag.Title = "Contul meu - ProducatoriLocali.Ro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="loc-form-title">Contul meu</div>
+<div class="loc-form-title">
+    Contul meu
+    @if (Session["LocalProducerAppUserFirstName"] != null && Session["LocalProducerAppUserLastName"] != null)
+    {
+    <span>: @Session["LocalProducerAppUserFirstName"]  @Session["LocalProducerAppUserLastName"]</span>
+    }
+</div>
 <div class="loc-list-content">
 
     <div class="w3-row">
@@ -26,94 +32,100 @@
         <h2>Schimba datele contului</h2>
         <div class="loc-product-form">
 
-            <form method="post" action="">
+            <form method="post" action="/Users/MyAccount">
                 <fieldset style="border: none;">
+                    <input type="hidden" id="UserId" name="UserId" value="@Session["LocalProducerAppUserId"]" />
                     <label for="LastName">Nume*</label>
-                    <input class="loc-input-form" type="text" id="LastName" name="LastName" required="required" placeholder="Nume . . ." />
+                    <input class="loc-input-form" type="text" id="LastName" name="LastName" required="required" value="@Model.Utilizator.LastName" placeholder="Nume . . ." />
 
                     <label for="FirstName">Prenume*</label>
-                    <input class="loc-input-form" type="text" id="FirstName" name="FirstName" required="required" placeholder="Prenume . . ." />
+                    <input class="loc-input-form" type="text" id="FirstName" name="FirstName" required="required" value="@Model.Utilizator.FirstName" placeholder="Prenume . . ." />
 
                     <label for="Email">Email*</label>
-                    <input class="loc-input-form" type="email" id="Email" name="Email" required="required" placeholder="Email . . ." />
+                    <input class="loc-input-form" type="email" id="Email" name="Email" required="required" value="@Model.Utilizator.Email" placeholder="Email . . ." />
 
                     <label for="PhoneNumber">Numar telefon</label>
-                    <input class="loc-input-form" type="text" id="PhoneNumber" name="PhoneNumber" placeholder="Numar telefon . . ." />
+                    <input class="loc-input-form" type="text" id="PhoneNumber" name="PhoneNumber" value="@Model.Utilizator.PhoneNumber" placeholder="Numar telefon . . ." />
 
                     <label for="Password">Parola*</label>
-                    <input class="loc-input-form" type="password" id="Password" name="Password" required="required" placeholder="Parola . . ." />
+                    <input class="loc-input-form" type="password" id="Password" name="Password" value="@Model.Utilizator.Password" required="required" placeholder="Parola . . ." />
 
                     <label for="RePassword">Reintroduceti parola*</label>
-                    <input class="loc-input-form" type="password" id="RePassword" name="RePassword" required="required" placeholder="Reintroduceti parola . . ." />
+                    <input class="loc-input-form" type="password" id="ReenteredPassword" name="ReenteredPassword" value="@Model.Utilizator.ReenteredPassword" required="required" placeholder="Reintroduceti parola . . ." />
 
                     <a href="/" class="loc-back-button">Inapoi la pagina principala</a>
-                    <input type="submit" class="loc-submit-form" value="Inregistreaza-te" />
+                    <input type="submit" class="loc-submit-form" value="Modifica informatiile contului" />
                 </fieldset>
             </form>
         </div>
+
+        <script>
+            function myFunction() {
+                var x = document.getElementById("snackbar-ok");
+                x.className = "show";
+                setTimeout(function () { x.className = x.className.replace("show", ""); }, 4000);
+            }
+        </script>
+
+        @if (TempData["Message"] != null)
+        {
+        <div id="snackbar-ok">@TempData["Message"]</div>
+            <script>myFunction();</script>
+        }
     </div>
 
     <div id="AnunturiActive" class="w3-container myAccount" style="display:none">
         <h2>Anunturi active</h2>
-        <div class="loc-product">
-            <div class="loc-prod-img">
-                <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
-            </div>
-            <div class="loc-prod-details">
-                <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
-                <p> Localitate: Galati</p>
-                <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
-                <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
-            </div>
-        </div>
-        <div class="loc-product">
-            <div class="loc-prod-img">
-                <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
-            </div>
-            <div class="loc-prod-details">
-                <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
-                <p> Localitate: Galati</p>
-                <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
-                <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
-            </div>
-        </div>
-        <div class="loc-product">
-            <div class="loc-prod-img">
-                <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
-            </div>
-            <div class="loc-prod-details">
-                <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
-                <p> Localitate: Galati</p>
-                <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
-                <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
-            </div>
-        </div>
+
+        @if (Model.ActivePosts.Count > 0)
+        {
+            foreach (var active in Model.ActivePosts)
+            {
+                <div class="loc-product">
+                    <div class="loc-prod-img">
+                        <img src="~/Images/ProductsImages/@active.ImagePath" class="loc-img-card" />
+                    </div>
+                    <div class="loc-prod-details">
+                        <h2><a class="loc-link-title" href="/Products/ProductDetails?ProdId=@active.ProductId">@active.Title</a></h2>
+                        <p> Judet: @active.Locality</p>
+                        <p class="loc-prod-name">Produs vândut de: @Model.Utilizator.FirstName @Model.Utilizator.LastName </p>
+                        <a class="loc-link" href="/Products/ProductDetails?ProdId=@active.ProductId"><i class="far fa-eye"></i> Vezi anunțul</a>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p style="text-align:center;">Nu aveti anunturi active. Puteti sa adaugati un anunt nou apasand click pe butonul "Adauga anunt" din coltul dreapta sus.</p>
+        }
+
     </div>
 
     <div id="AnunturiInactive" class="w3-container myAccount" style="display:none">
         <h2>Anunturi dezactivate</h2>
-        <div class="loc-product" style="opacity: 0.7;">
-            <div class="loc-prod-img">
-                <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
-            </div>
-            <div class="loc-prod-details">
-                <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
-                <p> Localitate: Galati</p>
-                <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
-                <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
-            </div>
-        </div>
-        <div class="loc-product" style="opacity: 0.7;">
-            <div class="loc-prod-img">
-                <img src="~/Images/tocana_legume.jpg" class="loc-img-card" />
-            </div>
-            <div class="loc-prod-details">
-                <h2><a class="loc-link-title" href="#">Title of this product</a></h2>
-                <p> Localitate: Galati</p>
-                <p class="loc-prod-name">Produs vândut de: Popescu Alex</p>
-                <a class="loc-link" href="#"><i class="far fa-eye"></i> Vezi anunțul</a>
-            </div>
-        </div>
+
+        @if (Model.InactivePosts.Count > 0)
+        {
+            foreach (var inactive in Model.InactivePosts)
+            {
+                <div class="loc-product" style="opacity: 0.7;">
+                    <div class="loc-prod-img">
+                        <img src="~/Images/ProductsImages/@inactive.ImagePath" class="loc-img-card" />
+                    </div>
+                    <div class="loc-prod-details">
+                        <h2><a class="loc-link-title" href="/Products/ProductDetails?ProdId=@inactive.ProductId">@inactive.Title</a></h2>
+                        <p> Judet: @inactive.Locality</p>
+                        <p class="loc-prod-name">Produs vândut de: @Model.Utilizator.FirstName @Model.Utilizator.LastName</p>
+                        <a class="loc-link" href="/Products/ProductDetails?ProdId=@inactive.ProductId"><i class="far fa-eye"></i> Vezi anunțul</a>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p style="text-align:center;">Nu aveti anunturi dezactivate. :)</p>
+        }
+
     </div>
 
     <div id="MesajeleMele" class="w3-container myAccount" style="display:none">

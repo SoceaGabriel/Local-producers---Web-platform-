@@ -1,42 +1,41 @@
-﻿<div class="loc-search-zone">
+﻿@model ProducatoriLocali.Models.MainPageProductsViewModel
+
+<div class="loc-search-zone">
     <div class="loc-row">
-        <div class="loc-item-search">
-            <select name="area" class="" aria-label="Area" id="chooseCategory" onchange="this.form.click()">
-                <option selected>Categorie</option>
-                <option value="New Village">New Village</option>
-                <option value="Old Town">Old Town</option>
-                <option value="Modern City">Modern City</option>
-            </select>
-        </div>
-        <div class="loc-item-search">
-            <select name="price" class="" aria-label="Default select example" id="chooseCategory" onchange="">
-                <option selected>Subcategorie</option>
-                <option value="$100 - $250">$100 - $250</option>
-                <option value="$250 - $500">$250 - $500</option>
-                <option value="$500 - $1000">$500 - $1,000</option>
-                <option value="$1000+">$1,000 or more</option>
-            </select>
-        </div>
-        <div class="loc-item-search">
-            <input type="address" name="address" class="" placeholder="Căutați produsul dorit" autocomplete="on" required>
-        </div>
-        <div class="loc-item-search">
-            <button class=""><i class="fa fa-search"></i> Căutați</button>
-        </div>
+        <form method="GET" action="/Products/GetProducts">
+            <div class="loc-item-search">
+                @Html.DropDownList("Category",
+                   EnumHelper.GetSelectList(typeof(ProducatoriLocali.Models.Category)),
+                   "Selecteaza categoria",
+                   new { @class = "", @id = "Category", @name="Category" })
+            </div>
+            <div class="loc-item-search">
+                @Html.DropDownList("SubCategory",
+                   EnumHelper.GetSelectList(typeof(ProducatoriLocali.Models.SubCategory)),
+                   "Selecteaza subcategia",
+                   new { @class = "", @id = "SubCategory", @name="SubCategory" })
+            </div>
+            <div class="loc-item-search">
+                <input type="text" name="SearchedWords" id="SearchedWords" class="" placeholder="Căutați produsul dorit" autocomplete="on" value="">
+            </div>
+            <div class="loc-item-search">
+                <button type="submit" id="Cauta" name="Cauta" class=""><i class="fa fa-search"></i> Căutați</button>
+            </div>
+        </form>
     </div>
     <br />
     <div class="loc-categories-zone">
         <ul class="categories">
-            <li><a href="#"><span class="icon"><img src="../Images/icons/cocktail.png" alt="Băuturi"></span> Băuturi</a></li>
-            <li><a href="#"><span class="icon"><img src="../Images/icons/steak.png" alt="Băuturi"></span> Carne și pește</a></li>
-            <li><a href="#"><span class="icon"><img src="../Images/icons/fruits.png" alt="Băuturi"></span> Fructe și legume</a></li>
-            <li><a href="#"><span class="icon"><img src="../Images/icons/boiled-egg.png" alt="Băuturi"></span> Ouă și lapte</a></li>
-            <li><a href="#"><span class="icon"><img src="../Images/icons/honey.png" alt="Băuturi"></span> Miere și dulceață</a></li>
-            <li><a href="#"><span class="icon"><img src="../Images/icons/bread.png" alt="Băuturi"></span> Panificație</a></li>
-            <li><a href="#"><span class="icon"><img src="../Images/icons/home.png" alt="Băuturi"></span> Casă și grădină</a></li>
-            <li><a href="#"><span class="icon"><img src="../Images/icons/table-saw.png" alt="Băuturi"></span> Lemn și metal</a></li>
-            <li><a href="#"><span class="icon"><img src="../Images/icons/woven-bag.png" alt="Băuturi"></span> Țesut</a></li>
-            <li><a href="#"><span class="icon"><img src="../Images/icons/color-palette.png" alt="Băuturi"></span> Pictură</a></li>
+            <li><a href="/Products/GetProducts?Subcategory=@ProducatoriLocali.Models.SubCategory.BauturiAlcoolice"><span class="icon"><img src="../Images/icons/cocktail.png" alt="Băuturi"></span> Băuturi</a></li>
+            <li><a href="/Products/GetProducts?Subcategory=@ProducatoriLocali.Models.SubCategory.CarneSiPeste"><span class="icon"><img src="../Images/icons/steak.png" alt="Carne și pește"></span> Carne și pește</a></li>
+            <li><a href="/Products/GetProducts?Subcategory=@ProducatoriLocali.Models.SubCategory.Fructe"><span class="icon"><img src="../Images/icons/fruits.png" alt="Fructe și legume"></span> Fructe și legume</a></li>
+            <li><a href="/Products/GetProducts?Subcategory=@ProducatoriLocali.Models.SubCategory.OuaSiLactate"><span class="icon"><img src="../Images/icons/boiled-egg.png" alt="Ouă și lapte"></span> Ouă și lapte</a></li>
+            <li><a href="/Products/GetProducts?Subcategory=@ProducatoriLocali.Models.SubCategory.MiereSiDulceata"><span class="icon"><img src="../Images/icons/honey.png" alt="Miere și dulceață"></span> Miere și dulceață</a></li>
+            <li><a href="/Products/GetProducts?Subcategory=@ProducatoriLocali.Models.SubCategory.Panificatie"><span class="icon"><img src="../Images/icons/bread.png" alt="Panificație"></span> Panificație</a></li>
+            <li><a href="/Products/GetProducts?Subcategory=@ProducatoriLocali.Models.SubCategory.CasaSiGradina"><span class="icon"><img src="../Images/icons/home.png" alt="Casă și grădină"></span> Casă și grădină</a></li>
+            <li><a href="/Products/GetProducts?Subcategory=@ProducatoriLocali.Models.SubCategory.LemnSiMetal"><span class="icon"><img src="../Images/icons/table-saw.png" alt="Lemn și metal"></span> Lemn și metal</a></li>
+            <li><a href="/Products/GetProducts?Subcategory=@ProducatoriLocali.Models.SubCategory.TesutCusutCrosetat"><span class="icon"><img src="../Images/icons/woven-bag.png" alt="Țesut"></span> Țesut</a></li>
+            <li><a href="/Products/GetProducts?Subcategory=@ProducatoriLocali.Models.SubCategory.Pictura"><span class="icon"><img src="../Images/icons/color-palette.png" alt="Pictură"></span> Pictură</a></li>
         </ul>
     </div>
 </div>
@@ -45,49 +44,34 @@
 <section>
     <div class="loc-zone-title">Cele mai vizionate produse</div>
     <div class="loc-sections-cards">
-        <div class="loc-section-card">
-            <div class="loc-section-card-img">
-                <img src="~/Images/img001.jpg" class="loc-card-img" />
-            </div>
-            <div class="loc-section-card-details">
-                <div class="loc-hr"><a href="/Products/ProductDetails" class="loc-card-title">Title of this product</a> <span class="loc-card-price">27 Lei</span></div>
-                <p>Loren ipsum loren ipsum Loren ipsum loren ipsum Loren ipsum loren  ...</p>
-                <div class="loc-card-category"><span href="#" class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: Nealcoolice</span></div><br />
-            </div>
-        </div>
 
-        <div class="loc-section-card">
-            <div class="loc-section-card-img">
-                <img src="~/Images/img001.jpg" class="loc-card-img" />
-            </div>
-            <div class="loc-section-card-details">
-                <div class="loc-hr"><a href="#" class="loc-card-title">Title of this product</a> <span class="loc-card-price">27 Lei</span></div>
-                <p>Loren ipsum loren ipsum Loren ipsum loren ipsum Loren ipsum loren  ...</p>
-                <div class="loc-card-category"><span href="#" class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: Nealcoolice</span></div><br />
-            </div>
-        </div>
+        @{
+            if (Model.MostViewed.Count > 0)
+            {
+                foreach (var viewed in Model.MostViewed)
+                {
+                    <div class="loc-section-card">
+                        <div class="loc-section-card-img">
+                            <img src="~/Images/ProductsImages/@viewed.ImagePath" class="loc-card-img" />
+                        </div>
+                        <div class="loc-section-card-details">
+                            <div class="loc-hr">
+                                <a href="/Products/ProductDetails?ProdId=@viewed.ProductId" class="loc-card-title">@(viewed.Title.Length >= 26 ? viewed.Title.Substring(0, 25) : viewed.Title)</a> 
+                                <span class="loc-card-price">@viewed.Price LEI</span>
+                            </div>
+                            <p>@(viewed.Description.Length >= 50 ? viewed.Description.Substring(0,50) : viewed.Description)  ...</p>
+                            <div class="loc-card-category"><span class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: @viewed.SubCategory</span></div><br />
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>Nu exista produse introduse in platforma! :(</p>
+            }
 
-        <div class="loc-section-card">
-            <div class="loc-section-card-img">
-                <img src="~/Images/img001.jpg" class="loc-card-img" />
-            </div>
-            <div class="loc-section-card-details">
-                <div class="loc-hr"><a href="#" class="loc-card-title">Title of this product</a> <span class="loc-card-price">27 Lei</span></div>
-                <p>Loren ipsum loren ipsum Loren ipsum loren ipsum Loren ipsum loren  ...</p>
-                <div class="loc-card-category"><span href="#" class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: Nealcoolice</span></div><br />
-            </div>
-        </div>
+        }
 
-        <div class="loc-section-card">
-            <div class="loc-section-card-img">
-                <img src="~/Images/img001.jpg" class="loc-card-img" />
-            </div>
-            <div class="loc-section-card-details">
-                <div class="loc-hr"><a href="#" class="loc-card-title">Title of this product</a> <span class="loc-card-price">27 Lei</span></div>
-                <p>Loren ipsum loren ipsum Loren ipsum loren ipsum Loren ipsum loren  ...</p>
-                <div class="loc-card-category"><span href="#" class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: Nealcoolice</span></div><br />
-            </div>
-        </div>
     </div>
 </section>
 
@@ -96,49 +80,34 @@
 <section>
     <div class="loc-zone-title">Cele mai noi produse</div>
     <div class="loc-sections-cards">
-        <div class="loc-section-card">
-            <div class="loc-section-card-img">
-                <img src="~/Images/img001.jpg" class="loc-card-img" />
-            </div>
-            <div class="loc-section-card-details">
-                <div class="loc-hr"><a href="#" class="loc-card-title">Title of this product</a> <span class="loc-card-price">27 Lei</span></div>
-                <p>Loren ipsum loren ipsum Loren ipsum loren ipsum Loren ipsum loren  ...</p>
-                <div class="loc-card-category"><span href="#" class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: Nealcoolice</span></div><br />
-            </div>
-        </div>
 
-        <div class="loc-section-card">
-            <div class="loc-section-card-img">
-                <img src="~/Images/img001.jpg" class="loc-card-img" />
-            </div>
-            <div class="loc-section-card-details">
-                <div class="loc-hr"><a href="#" class="loc-card-title">Title of this product</a> <span class="loc-card-price">27 Lei</span></div>
-                <p>Loren ipsum loren ipsum Loren ipsum loren ipsum Loren ipsum loren  ...</p>
-                <div class="loc-card-category"><span href="#" class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: Nealcoolice</span></div><br />
-            </div>
-        </div>
+        @{
+            if (Model.NewProducts.Count > 0)
+            {
+                foreach (var viewed in Model.NewProducts)
+                {
+                    <div class="loc-section-card">
+                        <div class="loc-section-card-img">
+                            <img src="~/Images/ProductsImages/@viewed.ImagePath" class="loc-card-img" />
+                        </div>
+                        <div class="loc-section-card-details">
+                            <div class="loc-hr">
+                                <a href="/Products/ProductDetails?ProdId=@viewed.ProductId" class="loc-card-title">@(viewed.Title.Length >= 26 ? viewed.Title.Substring(0, 25) : viewed.Title)</a>
+                                <span class="loc-card-price">@viewed.Price LEI</span>
+                            </div>
+                            <p>@(viewed.Description.Length >= 50 ? viewed.Description.Substring(0, 50) : viewed.Description)  ...</p>
+                            <div class="loc-card-category"><span class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: @viewed.SubCategory</span></div><br />
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>Nu exista produse introduse in platforma! :(</p>
+            }
 
-        <div class="loc-section-card">
-            <div class="loc-section-card-img">
-                <img src="~/Images/img001.jpg" class="loc-card-img" />
-            </div>
-            <div class="loc-section-card-details">
-                <div class="loc-hr"><a href="#" class="loc-card-title">Title of this product</a> <span class="loc-card-price">27 Lei</span></div>
-                <p>Loren ipsum loren ipsum Loren ipsum loren ipsum Loren ipsum loren  ...</p>
-                <div class="loc-card-category"><span href="#" class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: Nealcoolice</span></div><br />
-            </div>
-        </div>
+        }
 
-        <div class="loc-section-card">
-            <div class="loc-section-card-img">
-                <img src="~/Images/img001.jpg" class="loc-card-img" />
-            </div>
-            <div class="loc-section-card-details">
-                <div class="loc-hr"><a href="#" class="loc-card-title">Title of this product</a> <span class="loc-card-price">27 Lei</span></div>
-                <p>Loren ipsum loren ipsum Loren ipsum loren ipsum Loren ipsum loren  ...</p>
-                <div class="loc-card-category"><span href="#" class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: Nealcoolice</span></div><br />
-            </div>
-        </div>
     </div>
 </section>
 
@@ -147,48 +116,33 @@
 <section>
     <div class="loc-zone-title">Produsele cu scorul cel mai mare</div>
     <div class="loc-sections-cards">
-        <div class="loc-section-card">
-            <div class="loc-section-card-img">
-                <img src="~/Images/img001.jpg" class="loc-card-img" />
-            </div>
-            <div class="loc-section-card-details">
-                <div class="loc-hr"><a href="#" class="loc-card-title">Title of this product</a> <span class="loc-card-price">27 Lei</span></div>
-                <p>Loren ipsum loren ipsum Loren ipsum loren ipsum Loren ipsum loren  ...</p>
-                <div class="loc-card-category"><span href="#" class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: Nealcoolice</span></div><br />
-            </div>
-        </div>
 
-        <div class="loc-section-card">
-            <div class="loc-section-card-img">
-                <img src="~/Images/img001.jpg" class="loc-card-img" />
-            </div>
-            <div class="loc-section-card-details">
-                <div class="loc-hr"><a href="#" class="loc-card-title">Title of this product</a> <span class="loc-card-price">27 Lei</span></div>
-                <p>Loren ipsum loren ipsum Loren ipsum loren ipsum Loren ipsum loren  ...</p>
-                <div class="loc-card-category"><span href="#" class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: Nealcoolice</span></div><br />
-            </div>
-        </div>
+        @{
+            if (Model.MostScored.Count > 0)
+            {
+                foreach (var viewed in Model.MostScored)
+                {
+                    <div class="loc-section-card">
+                        <div class="loc-section-card-img">
+                            <img src="~/Images/ProductsImages/@viewed.ImagePath" class="loc-card-img" />
+                        </div>
+                        <div class="loc-section-card-details">
+                            <div class="loc-hr">
+                                <a href="/Products/ProductDetails?ProdId=@viewed.ProductId" class="loc-card-title">@(viewed.Title.Length >= 26 ? viewed.Title.Substring(0, 25) : viewed.Title)</a>
+                                <span class="loc-card-price">@viewed.Price LEI</span>
+                            </div>
+                            <p>@(viewed.Description.Length >= 50 ? viewed.Description.Substring(0, 50) : viewed.Description)  ...</p>
+                            <div class="loc-card-category"><span class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: @viewed.SubCategory</span></div><br />
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>Nu exista produse introduse in platforma! :(</p>
+            }
 
-        <div class="loc-section-card">
-            <div class="loc-section-card-img">
-                <img src="~/Images/img001.jpg" class="loc-card-img" />
-            </div>
-            <div class="loc-section-card-details">
-                <div class="loc-hr"><a href="#" class="loc-card-title">Title of this product</a> <span class="loc-card-price">27 Lei</span></div>
-                <p>Loren ipsum loren ipsum Loren ipsum loren ipsum Loren ipsum loren  ...</p>
-                <div class="loc-card-category"><span href="#" class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: Nealcoolice</span></div><br />
-            </div>
-        </div>
+        }
 
-        <div class="loc-section-card">
-            <div class="loc-section-card-img">
-                <img src="~/Images/img001.jpg" class="loc-card-img" />
-            </div>
-            <div class="loc-section-card-details">
-                <div class="loc-hr"><a href="#" class="loc-card-title">Title of this product</a> <span class="loc-card-price">27 Lei</span></div>
-                <p>Loren ipsum loren ipsum Loren ipsum loren ipsum Loren ipsum loren  ...</p>
-                <div class="loc-card-category"><span href="#" class="loc-stars">&#10025;&#10025;&#10025;&#10025;&#10025;</span> <span class="loc-card-price">Subcat: Nealcoolice</span></div><br />
-            </div>
-        </div>
     </div>
 </section>
